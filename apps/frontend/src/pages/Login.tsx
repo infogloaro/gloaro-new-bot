@@ -27,17 +27,21 @@ export default function Login() {
     <div className="grid min-h-screen place-items-center px-4">
       <div className="w-full max-w-sm">
         <div className="mb-6 text-center">
-          <div className="mx-auto mb-3 grid size-12 place-items-center rounded-xl bg-brand-500 text-lg font-bold text-white">
-            GA
+          <div className="mx-auto mb-3 grid size-14 place-items-center overflow-hidden rounded-2xl gold-gradient shadow-[0_6px_20px_rgba(217,162,27,0.4)]">
+            <img
+              src="https://www.gloaro.com/assets/logo-ByhasI7u.png"
+              alt="GloAro"
+              className="size-9 object-contain"
+            />
           </div>
-          <h1 className="text-xl font-semibold text-slate-900">GloAro Admin</h1>
-          <p className="mt-1 text-sm text-slate-500">Sign in to manage leads and conversations</p>
+          <h1 className="text-xl font-bold text-[#10233f]">GloAro Admin</h1>
+          <p className="mt-1 text-sm text-[#6b7a90]">Sign in to manage leads and conversations</p>
         </div>
 
         <Card className="p-6">
           <form onSubmit={onSubmit} className="space-y-4">
             <div>
-              <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-slate-700">
+              <label htmlFor="email" className="mb-1.5 block text-sm font-semibold text-[#10233f]">
                 Email
               </label>
               <Input
@@ -52,7 +56,7 @@ export default function Login() {
             </div>
 
             <div>
-              <label htmlFor="password" className="mb-1.5 block text-sm font-medium text-slate-700">
+              <label htmlFor="password" className="mb-1.5 block text-sm font-semibold text-[#10233f]">
                 Password
               </label>
               <Input

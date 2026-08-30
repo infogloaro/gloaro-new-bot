@@ -29,18 +29,24 @@ export default function Layout() {
 
   return (
     <div className="flex min-h-screen">
-      <aside className="flex w-60 shrink-0 flex-col border-r border-slate-200 bg-white">
-        <div className="flex items-center gap-2 px-5 py-5">
-          <div className="grid size-9 place-items-center rounded-lg bg-brand-500 text-sm font-bold text-white">
-            GA
-          </div>
-          <div>
-            <p className="text-sm font-semibold text-slate-900">GloAro</p>
-            <p className="text-xs text-slate-500">WhatsApp Admin</p>
+      <aside className="sidebar-gradient flex w-64 shrink-0 flex-col">
+        <div className="px-5 py-6">
+          <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 backdrop-blur-sm">
+            <div className="grid size-10 shrink-0 place-items-center overflow-hidden rounded-xl gold-gradient shadow-[0_4px_14px_rgba(217,162,27,0.4)]">
+              <img
+                src="https://www.gloaro.com/assets/logo-ByhasI7u.png"
+                alt="GloAro"
+                className="size-7 object-contain"
+              />
+            </div>
+            <div>
+              <p className="text-sm font-bold tracking-wide text-white">GloAro</p>
+              <p className="text-[11px] font-medium text-[#f2c75c]">WhatsApp Admin</p>
+            </div>
           </div>
         </div>
 
-        <nav className="flex-1 space-y-0.5 px-3">
+        <nav className="flex-1 space-y-1 px-3">
           {NAV.map(({ to, label, icon: Icon, end }) => (
             <NavLink
               key={to}
@@ -48,27 +54,34 @@ export default function Layout() {
               end={end}
               className={({ isActive }) =>
                 clsx(
-                  'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                  'group relative flex items-center gap-3 rounded-2xl px-3.5 py-2.5 text-sm font-medium transition-all duration-200',
                   isActive
-                    ? 'bg-brand-50 text-brand-700'
-                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900',
+                    ? 'bg-gradient-to-r from-[#f8fafc] to-[#eef4fb] text-[#0b2345] shadow-[0_4px_14px_rgba(0,0,0,0.25)]'
+                    : 'text-[#c7d4e6] hover:bg-white/8 hover:text-white',
                 )
               }
             >
-              <Icon className="size-4.5" />
-              {label}
+              {({ isActive }) => (
+                <>
+                  {isActive && (
+                    <span className="absolute left-0 h-6 w-1 rounded-r-full gold-gradient" />
+                  )}
+                  <Icon className="size-4.5" />
+                  {label}
+                </>
+              )}
             </NavLink>
           ))}
         </nav>
 
-        <div className="border-t border-slate-200 p-3">
+        <div className="border-t border-white/10 p-3">
           <div className="px-2 pb-2">
-            <p className="truncate text-sm font-medium text-slate-800">{user?.name}</p>
-            <p className="truncate text-xs text-slate-500">{user?.email}</p>
+            <p className="truncate text-sm font-medium text-white">{user?.name}</p>
+            <p className="truncate text-xs text-[#8ea3c2]">{user?.email}</p>
           </div>
           <button
             onClick={logout}
-            className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
+            className="flex w-full items-center gap-3 rounded-2xl px-3.5 py-2.5 text-sm font-medium text-[#c7d4e6] transition-all duration-200 hover:bg-white/8 hover:text-white"
           >
             <LogOut className="size-4.5" />
             Sign out
