@@ -57,6 +57,43 @@ export class BotService {
       : null;
 
     for (const msg of messages) {
+      // A node with an image sends it as its own message first, ahead of the
+      // text/menu below - WhatsApp cannot attach an interactive list to media.
+      if (msg.imageUrl) {
+        const imageResult = await this.whatsapp.send(
+          tenantId,
+          { type: 'image', to: whatsappNumber, node: msg.node, mediaUrl: msg.imageUrl },
+          account?.id,
+        );
+
+        if (customer && conversation) {
+          await this.prisma.message.create({
+            data: {
+              tenantId,
+              conversationId: conversation.id,
+              customerId: customer.id,
+              direction: 'OUTBOUND',
+              type: 'image',
+              body: msg.imageUrl,
+              botNode: msg.node,
+              provider: imageResult.provider,
+              providerConfigId: imageResult.providerConfigId ?? account?.id ?? null,
+              providerMessageId: imageResult.messageId ?? null,
+              status: imageResult.success ? 'SENT' : 'FAILED',
+              errorMessage: imageResult.error ?? null,
+              sentAt: imageResult.success ? new Date() : null,
+            },
+          });
+        }
+
+        if (!imageResult.success) {
+          this.logger.error(
+            `Failed to deliver image for ${msg.node}: [${imageResult.errorCode}] ${imageResult.error}`,
+          );
+          // The text/menu still carries the actual content, so keep going.
+        }
+      }
+
       // Reply on the channel the customer wrote to, not the tenant default -
       // a tenant with two numbers must not answer from the wrong one.
       const { result, body, type } = await this.sendOne(

@@ -22,6 +22,8 @@ export interface OutboundMessage {
   menu?: OutboundMenu;
   /** The same message with its options spelled out as numbered text. */
   numberedBody?: string;
+  /** Sent as a separate image message ahead of this one, when set. */
+  imageUrl?: string;
 }
 
 /**
@@ -480,8 +482,9 @@ export class BotEngineService {
    */
   private compose(node: BotFlow, session: BotSession, customer: Customer): OutboundMessage {
     const body = this.render(node.body, session, customer);
+    const imageUrl = node.imageUrl ?? undefined;
 
-    if (node.nodeType !== 'MENU') return { body, node: node.key };
+    if (node.nodeType !== 'MENU') return { body, node: node.key, imageUrl };
 
     const options = this.parseOptions(node);
     const history = Array.isArray(session.history) ? (session.history as string[]) : [];
@@ -496,6 +499,7 @@ export class BotEngineService {
     return {
       body,
       node: node.key,
+      imageUrl,
       ...(menu ? { menu } : {}),
       numberedBody: `${body}${renderNumberedOptions(displayOptions)}`,
     };
