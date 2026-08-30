@@ -1,0 +1,31 @@
+@import 'tailwindcss';
+
+/* GloAro brand tokens, used through Tailwind's `brand-*` utilities. */
+@theme {
+  --color-brand-50: #eaf7f1;
+  --color-brand-100: #cceade;
+  --color-brand-200: #9fd8c1;
+  --color-brand-300: #66c2a1;
+  --color-brand-400: #34a97f;
+  --color-brand-500: #0b7a4b;
+  --color-brand-600: #0a6c42;
+  --color-brand-700: #085736;
+  --color-brand-800: #06432a;
+  --color-brand-900: #04301e;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-slate-100 text-slate-800 antialiased;
+}
+
+/* Keeps long WhatsApp message bodies readable in the chat thread. */
+.msg-body {
+  white-space: pre-wrap;
+  word-break: break-word;
+}

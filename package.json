@@ -1,0 +1,23 @@
+{
+  "name": "gloaro-whatsapp-bot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GloAro WhatsApp Bot - Mart & Digital Network lead capture",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=@gloaro/backend",
+    "build": "npm run build --workspace=@gloaro/backend",
+    "infra:up": "docker compose up -d",
+    "infra:down": "docker compose down",
+    "infra:reset": "docker compose down -v && docker compose up -d",
+    "db:migrate": "npm run db:migrate --workspace=@gloaro/backend",
+    "db:seed": "npm run db:seed --workspace=@gloaro/backend",
+    "db:studio": "npm run db:studio --workspace=@gloaro/backend"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

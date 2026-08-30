@@ -1,0 +1,296 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>GloAro WhatsApp Bot – Development Requirement V1</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: 10.5pt; line-height: 1.55; color: #1c2430; margin: 0;
+  }
+  .cover {
+    text-align: center; padding: 55mm 0 0 0; page-break-after: always;
+  }
+  .cover .brand {
+    font-size: 34pt; font-weight: 800; letter-spacing: -1px; color: #0b7a4b;
+  }
+  .cover .sub { font-size: 16pt; font-weight: 600; margin-top: 6px; color: #1c2430; }
+  .cover .rule { width: 70mm; height: 3px; background: #0b7a4b; margin: 18px auto; }
+  .cover .meta { margin-top: 26px; font-size: 11pt; color: #55606e; line-height: 2; }
+  .cover .tag {
+    display: inline-block; margin-top: 30px; padding: 6px 18px; border: 1px solid #0b7a4b;
+    border-radius: 20px; color: #0b7a4b; font-size: 10pt; font-weight: 600;
+  }
+  h1 {
+    font-size: 15pt; color: #0b7a4b; margin: 26px 0 10px;
+    border-bottom: 2px solid #d8e6df; padding-bottom: 6px;
+    page-break-after: avoid;
+  }
+  h1:first-of-type { margin-top: 0; }
+  h2 { font-size: 11.5pt; color: #14324d; margin: 16px 0 6px; page-break-after: avoid; }
+  p { margin: 0 0 8px; }
+  ul, ol { margin: 0 0 10px; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0 14px; font-size: 9.5pt; }
+  th, td { border: 1px solid #cfd9e1; padding: 6px 8px; text-align: left; vertical-align: top; }
+  th { background: #0b7a4b; color: #fff; font-weight: 600; }
+  tr:nth-child(even) td { background: #f4f8f6; }
+  .msgbox {
+    background: #e7f6ee; border-left: 4px solid #0b7a4b; padding: 12px 14px;
+    border-radius: 4px; margin: 8px 0 14px; white-space: pre-wrap;
+    font-size: 10pt; page-break-inside: avoid;
+  }
+  .flow {
+    background: #f4f7fa; border: 1px solid #d5dfe8; border-radius: 4px;
+    padding: 10px 12px; margin: 8px 0 14px; font-size: 9.5pt; font-weight: 600; color: #14324d;
+  }
+  .section { page-break-inside: avoid; }
+  .cols { display: flex; gap: 14px; }
+  .cols > div { flex: 1; }
+  .note { font-size: 9.5pt; color: #55606e; font-style: italic; }
+  .pagebreak { page-break-before: always; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="brand">GloAro</div>
+  <div class="rule"></div>
+  <div class="sub">WhatsApp Bot – Complete Development Requirement</div>
+  <div class="meta">
+    Version: V1 &nbsp;•&nbsp; Initial Production Version<br>
+    Business Networking &nbsp;•&nbsp; B2B &amp; B2C Commerce &nbsp;•&nbsp; Technology Solutions
+  </div>
+  <div class="tag">Requirement Specification Document</div>
+</div>
+
+<h1>1. Project Overview</h1>
+<p>Build a WhatsApp bot for GloAro to handle customer enquiries for <strong>GloAro Mart</strong> and <strong>GloAro Digital Network</strong>. The bot provides menu-based conversations, lead capture, PostgreSQL storage, Google Sheets integration and admin WhatsApp notifications.</p>
+<p>The architecture should be scalable for future AI, CRM, campaigns, GloAro Tech and order tracking.</p>
+
+<h1>2. Initial Scope</h1>
+<h2>Included in V1</h2>
+<ul>
+  <li>WhatsApp Business API integration with a dedicated company WhatsApp number</li>
+  <li>Welcome message and main menu</li>
+  <li>GloAro Mart and GloAro Digital Network conversation flows</li>
+  <li>Lead capture, PostgreSQL storage and Google Sheets sync</li>
+  <li>Admin WhatsApp notification</li>
+  <li>Basic admin dashboard with customer &amp; conversation history</li>
+  <li>Bot sessions, error handling, testing and production deployment</li>
+</ul>
+<h2>Deferred (Future Phases)</h2>
+<ul>
+  <li>Advanced AI conversations</li>
+  <li>Marketing campaigns</li>
+  <li>Complex CRM and billing</li>
+  <li>Multi-tenant SaaS</li>
+</ul>
+
+<h1>3. Main Welcome Flow</h1>
+<div class="flow">Customer sends WhatsApp message → Welcome + Main Menu → GloAro Mart <em>or</em> GloAro Digital Network</div>
+
+<h2>Welcome Message</h2>
+<div class="msgbox">👋 Welcome to GloAro!
+We're delighted to have you here.
+
+GloAro is your one-stop platform for Business Networking, B2B &amp; B2C Commerce, Technology Solutions, and Business Growth.
+
+Please choose:
+1️⃣ GloAro Mart – 🛒 Buy • Sell • Grow
+2️⃣ GloAro Digital Network – 🤝 Business Networking Community
+
+Reply with the option number.</div>
+
+<h1 class="pagebreak">4. GloAro Mart Flow</h1>
+<h2>Menu Options</h2>
+<ol>
+  <li>B2B Marketplace</li>
+  <li>B2C Marketplace</li>
+  <li>Become a Seller</li>
+  <li>Track My Order</li>
+  <li>Contact Sales Team</li>
+</ol>
+
+<table>
+  <tr><th style="width:26%">Option</th><th>Content / Details Collected</th></tr>
+  <tr><td><strong>B2B Marketplace</strong></td><td>Categories: Food &amp; FMCG, Electronics, Fashion &amp; Garments, Industrial Products, Other Products.<br>Collect: Company Name, Contact Person, Mobile Number, Product Requirement.</td></tr>
+  <tr><td><strong>B2C Marketplace</strong></td><td>Browse Products, Latest Offers, Customer Support.</td></tr>
+  <tr><td><strong>Become a Seller</strong></td><td>Collect: Business Name, Owner Name, Mobile Number, Product Category, Business Location.</td></tr>
+  <tr><td><strong>Track My Order</strong></td><td>Ask for Order ID. Connect to order API if available; otherwise create a support request.</td></tr>
+  <tr><td><strong>Contact Sales Team</strong></td><td>Collect: Name, Mobile Number, Requirement. Create a lead.</td></tr>
+</table>
+
+<h1>5. GloAro Digital Network Flow</h1>
+<h2>Menu Options</h2>
+<ol>
+  <li>About GloAro</li>
+  <li>Membership Benefits</li>
+  <li>Chapters</li>
+  <li>Franchise Opportunity</li>
+  <li>Join GloAro</li>
+  <li>Upcoming Events</li>
+  <li>Contact Team</li>
+</ol>
+
+<table>
+  <tr><th style="width:26%">Option</th><th>Content / Details Collected</th></tr>
+  <tr><td><strong>About GloAro</strong></td><td>Explain referrals, connections, expert learning, collaboration and business growth.</td></tr>
+  <tr><td><strong>Membership Benefits</strong></td><td>Explain benefits, then collect: Full Name, Mobile Number, Email, Business Name, Business Category, City.</td></tr>
+  <tr><td><strong>Chapters</strong></td><td>Collect City or PIN Code.</td></tr>
+  <tr><td><strong>Franchise Opportunity</strong></td><td>Explain benefits, then collect: Name, Mobile Number, City.</td></tr>
+  <tr><td><strong>Join GloAro</strong></td><td>Collect: Full Name, Mobile Number, Email, Business Name, Business Category, City.</td></tr>
+  <tr><td><strong>Upcoming Events</strong></td><td>Show Business Meetups, Guest Speaker Sessions, Referral Meetings, Business Growth Workshops.<br>REGISTER collects: Name, Mobile, Email, City.</td></tr>
+  <tr><td><strong>Contact Team</strong></td><td>Show GloAro phone/email and collect requirement.</td></tr>
+</table>
+
+<h1 class="pagebreak">6. Lead Capture</h1>
+<div class="flow">Customer → Bot collects details → Validate → Create Lead → PostgreSQL → Google Sheets → Admin WhatsApp Notification</div>
+
+<h2>Lead Fields</h2>
+<table>
+  <tr><th style="width:33%">Field</th><th style="width:33%">Field</th><th style="width:34%">Field</th></tr>
+  <tr><td>Lead ID</td><td>Date &amp; Time</td><td>WhatsApp Number</td></tr>
+  <tr><td>Name</td><td>Email</td><td>Business Name</td></tr>
+  <tr><td>Main Category</td><td>Subcategory</td><td>Product / Business Category</td></tr>
+  <tr><td>City</td><td>Requirement</td><td>Status</td></tr>
+</table>
+<p><strong>Status values:</strong> New / Follow-up / Closed</p>
+
+<h1>7. Admin WhatsApp Notification</h1>
+<div class="msgbox">🚨 New WhatsApp Bot Lead
+
+Name: [Name]
+Phone: [WhatsApp Number]
+Category: [Main Category]
+Subcategory: [Subcategory]
+Requirement: [Requirement]
+Time: [Date &amp; Time]
+Status: New</div>
+
+<h1>8. Google Sheet Integration</h1>
+<p><strong>Columns:</strong> Date &amp; Time, WhatsApp Number, Name, Email, Business Name, Main Category, Subcategory, Product Category, City, Requirement, Status.</p>
+<p>Use the Google Sheets API to append each lead, with proper error handling and retries.</p>
+
+<h1>9. WhatsApp Integration</h1>
+<p>Use the official <strong>Meta WhatsApp Business Platform / Cloud API</strong>.</p>
+<table>
+  <tr><th style="width:50%">GloAro Provides</th><th style="width:50%">Developer Handles</th></tr>
+  <tr>
+    <td>Dedicated business mobile number, Meta Business account, WhatsApp Business account, required access &amp; verification.</td>
+    <td>Meta app configuration, API setup, credentials, webhook, message handling, bot integration and testing.</td>
+  </tr>
+</table>
+<p class="note">One dedicated GloAro business number is used for V1. API tokens must never be exposed in frontend code.</p>
+
+<h1>10. Webhook</h1>
+<ul>
+  <li><strong>GET</strong> /webhooks/whatsapp — verification</li>
+  <li><strong>POST</strong> /webhooks/whatsapp — message events</li>
+</ul>
+<div class="flow">Customer → WhatsApp → Meta → Webhook → NestJS Backend → Bot Engine → Response</div>
+<p>Webhook events must be logged and processed <strong>idempotently</strong> to prevent duplicate messages and duplicate leads.</p>
+
+<h1 class="pagebreak">11. Admin Panel</h1>
+<table>
+  <tr><th style="width:22%">Screen</th><th>Details</th></tr>
+  <tr><td><strong>Login</strong></td><td>Authenticated admin access.</td></tr>
+  <tr><td><strong>Dashboard</strong></td><td>Total Leads, New Leads, Follow-up, Closed, Today's Leads, Customers, Active Conversations.</td></tr>
+  <tr><td><strong>Leads</strong></td><td>View, Search, Filter, Status, Notes, Customer Number, Requirement.</td></tr>
+  <tr><td><strong>Customers</strong></td><td>Name, WhatsApp Number, Business, Category, Last Interaction, Conversation History.</td></tr>
+  <tr><td><strong>Conversations</strong></td><td>Customer, Messages, Date/Time, Status, Agent.</td></tr>
+  <tr><td><strong>Bot Menu</strong></td><td>Welcome message, main menu, submenus, responses, images and links.</td></tr>
+  <tr><td><strong>Settings</strong></td><td>Company details, WhatsApp config, admin notification number, Google Sheet.</td></tr>
+</table>
+
+<h1>12. Database</h1>
+<p><strong>PostgreSQL.</strong> Initial tables:</p>
+<table>
+  <tr><th style="width:33%">Table</th><th style="width:33%">Table</th><th style="width:34%">Table</th></tr>
+  <tr><td>users</td><td>customers</td><td>leads</td></tr>
+  <tr><td>conversations</td><td>messages</td><td>bot_flows</td></tr>
+  <tr><td>bot_sessions</td><td>whatsapp_accounts</td><td>settings</td></tr>
+</table>
+<p><strong>Relationships:</strong> Customer → Conversations → Messages &nbsp;|&nbsp; Customer → Leads</p>
+
+<h1>13. Recommended Technology</h1>
+<table>
+  <tr><th style="width:26%">Layer</th><th>Stack</th></tr>
+  <tr><td><strong>Frontend</strong></td><td>React.js, Vite, Tailwind CSS, React Query, Axios</td></tr>
+  <tr><td><strong>Backend</strong></td><td>NestJS, Prisma, REST API</td></tr>
+  <tr><td><strong>Database</strong></td><td>PostgreSQL</td></tr>
+  <tr><td><strong>WhatsApp</strong></td><td>Meta WhatsApp Business Platform</td></tr>
+  <tr><td><strong>Google</strong></td><td>Google Sheets API</td></tr>
+  <tr><td><strong>Deployment</strong></td><td>AWS, Nginx, HTTPS</td></tr>
+</table>
+
+<h1 class="pagebreak">14. Development Phases</h1>
+<table>
+  <tr><th style="width:12%">Phase</th><th style="width:30%">Name</th><th>Deliverables</th></tr>
+  <tr><td>1</td><td>Requirement Finalization</td><td>Messages, menus, lead fields, notification, Sheet, business contacts.</td></tr>
+  <tr><td>2</td><td>UI / UX</td><td>Login, Dashboard, Leads, Customers, Conversations, Bot Menu, Settings.</td></tr>
+  <tr><td>3</td><td>Database</td><td>PostgreSQL, Prisma, tables and relationships.</td></tr>
+  <tr><td>4</td><td>Backend</td><td>Authentication, Customer, Lead, Conversation, Message, Bot and Settings APIs.</td></tr>
+  <tr><td>5</td><td>Bot Engine</td><td>Welcome, Main Menu, GloAro Mart and Digital Network flows.</td></tr>
+  <tr><td>6</td><td>Lead Capture</td><td>Questions, validation, lead creation and status.</td></tr>
+  <tr><td>7</td><td>Google Sheets</td><td>Connect and append leads.</td></tr>
+  <tr><td>8</td><td>Admin Notification</td><td>Send new lead notification to admin WhatsApp.</td></tr>
+  <tr><td>9</td><td>Admin Panel</td><td>Connect frontend and backend.</td></tr>
+  <tr><td>10</td><td>WhatsApp API</td><td>Meta Business, WhatsApp account, company number, API, webhook, send/receive.</td></tr>
+  <tr><td>11</td><td>Testing</td><td>All menus, invalid input, interrupted flow, duplicate messages, webhook, Google Sheet and API failures.</td></tr>
+  <tr><td>12</td><td>Production</td><td>Deployment, domain, HTTPS, environment variables, credentials, backups, logs and monitoring.</td></tr>
+</table>
+
+<h1>15. What GloAro Must Provide Initially</h1>
+<table>
+  <tr><th style="width:24%">Category</th><th>Items</th></tr>
+  <tr><td><strong>Business</strong></td><td>GloAro logo, company name, company description, official email, official website, customer support number.</td></tr>
+  <tr><td><strong>WhatsApp</strong></td><td>Dedicated GloAro mobile number, Meta Business account, WhatsApp Business account, required Meta access/verification.</td></tr>
+  <tr><td><strong>Content</strong></td><td>Final approved Welcome message, GloAro Mart content, Digital Network content, contact information, product/service information, event information.</td></tr>
+  <tr><td><strong>Lead Management</strong></td><td>Admin notification WhatsApp number, sales contact, membership contact, franchise contact, Google account and Google Sheet.</td></tr>
+  <tr><td><strong>Technical</strong></td><td>AWS / server access, domain or subdomain, production email if required.</td></tr>
+</table>
+
+<h1>16. What the Developer Will Handle</h1>
+<p>Frontend, backend, database, bot engine, WhatsApp API, webhook, Google Sheets API, lead capture, admin notification, admin dashboard, authentication, validation, error handling, testing and deployment.</p>
+
+<h1 class="pagebreak">17. Final Architecture</h1>
+<div class="flow">Customer → WhatsApp → Meta WhatsApp Platform → Webhook → NestJS Backend → Bot Engine → PostgreSQL</div>
+<ul>
+  <li>Bot Engine branches into <strong>GloAro Mart</strong> and <strong>GloAro Digital Network</strong>.</li>
+  <li>Leads flow to <strong>Google Sheets</strong> and <strong>Admin WhatsApp</strong>.</li>
+  <li><strong>React Admin Panel</strong> connects to the backend.</li>
+</ul>
+
+<h1>18. V1 Completion Criteria</h1>
+<ul>
+  <li>Customer can message the GloAro WhatsApp number and the welcome message works</li>
+  <li>All GloAro Mart and Digital Network flows work end to end</li>
+  <li>Required details are collected correctly</li>
+  <li>Leads are saved to PostgreSQL and Google Sheets</li>
+  <li>Admin receives the WhatsApp notification</li>
+  <li>Admin can view and update leads</li>
+  <li>Conversation history is stored</li>
+  <li>Invalid inputs are handled gracefully</li>
+  <li>Production WhatsApp works reliably</li>
+  <li>Webhook is secured and tested</li>
+</ul>
+
+<h1>19. Immediate Starting Requirements</h1>
+<h2>Before Development Begins</h2>
+<ol>
+  <li>Dedicated WhatsApp mobile number</li>
+  <li>Meta Business / WhatsApp Business access</li>
+  <li>Final approved conversation content</li>
+  <li>Admin notification number</li>
+  <li>Google account + Google Sheet</li>
+  <li>GloAro business and contact information</li>
+</ol>
+
+<h2>Development Order</h2>
+<div class="flow">Requirement → Conversation Flow → Database → Backend → Bot → Lead Capture → Google Sheets → Admin Notification → WhatsApp API → Testing → Production</div>
+
+</body>
+</html>
