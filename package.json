@@ -15,7 +15,8 @@
     "infra:reset": "docker compose down -v && docker compose up -d",
     "db:migrate": "npm run db:migrate --workspace=@gloaro/backend",
     "db:seed": "npm run db:seed --workspace=@gloaro/backend",
-    "db:studio": "npm run db:studio --workspace=@gloaro/backend"
+    "db:studio": "npm run db:studio --workspace=@gloaro/backend",
+    "db:verify-flow": "npm run db:verify-flow --workspace=@gloaro/backend"
   },
   "engines": {
     "node": ">=22"
