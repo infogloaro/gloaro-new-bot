@@ -64,24 +64,19 @@ const aisensy = (extra: Record<string, string> = {}) =>
 // ---------------------------------------------------------------------------
 
 describe("provider registry", () => {
-  it("exposes exactly the four supported providers", () => {
+  it("exposes exactly the five supported providers", () => {
     expect(
       allDescriptors()
         .map((d) => d.id)
         .sort(),
-    ).toEqual(["AISENSY", "DIALOG360", "GUPSHUP", "ULTRAMSG"]);
-  });
-
-  it("does not expose Meta Cloud API", () => {
-    expect(allDescriptors().some((d) => /meta|cloud api/i.test(d.id))).toBe(
-      false,
-    );
+    ).toEqual(["AISENSY", "DIALOG360", "GUPSHUP", "META", "ULTRAMSG"]);
   });
 
   it("maps URL slugs to providers and rejects unknown ones", () => {
     expect(providerFromSlug("ultramsg")).toBe("ULTRAMSG");
     expect(providerFromSlug("360dialog")).toBe("DIALOG360");
-    expect(providerFromSlug("meta")).toBeNull();
+    expect(providerFromSlug("meta")).toBe("META");
+    expect(providerFromSlug("nope")).toBeNull();
   });
 
   it("builds an adapter for every declared provider", () => {
