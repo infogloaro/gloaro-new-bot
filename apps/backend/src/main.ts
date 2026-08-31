@@ -6,6 +6,7 @@ import { json, urlencoded } from 'express';
 import helmetDefault from 'helmet';
 import { AppModule } from './app.module';
 import { AppConfig } from './config/configuration';
+import { allDescriptors } from './whatsapp/providers/provider.registry';
 
 async function bootstrap(): Promise<void> {
   const logger = new Logger('Bootstrap');
@@ -68,7 +69,9 @@ async function bootstrap(): Promise<void> {
 
   logger.log(`GloAro backend listening on http://localhost:${appCfg.port}`);
   logger.log(
-    `Webhook base: ${appCfg.appUrl}/webhooks/whatsapp/{ultramsg|gupshup|aisensy|360dialog}/{accountId}` +
+    `Webhook base: ${appCfg.appUrl}/webhooks/whatsapp/{${allDescriptors()
+      .map((d) => d.slug)
+      .join('|')}}/{accountId}` +
       ' - the exact URL per channel is shown in Admin → Settings → WhatsApp',
   );
   if (appCfg.nodeEnv !== 'production') {

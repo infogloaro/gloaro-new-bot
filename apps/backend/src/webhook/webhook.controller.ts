@@ -53,7 +53,14 @@ export class WebhookController {
   /**
    * Some providers probe the URL with a GET before accepting it. Answering 200
    * with the echo parameter, when there is one, satisfies every provider we
-   * support without pretending to be Meta's hub.challenge handshake.
+   * support.
+   *
+   * Meta's handshake is the one that carries a secret: it sends hub.mode plus
+   * the hub.verify_token configured in the app dashboard, and echoing the
+   * challenge back regardless would make its "Verified" tick meaningless - a
+   * mistyped token would still look healthy while no message ever arrives. So
+   * whenever a verify token is present it must match before we echo. Probes
+   * that carry no token (every other provider) are unchanged.
    */
   @Get(':slug/:accountId')
   @HttpCode(200)
@@ -61,12 +68,45 @@ export class WebhookController {
     @Param('slug') slug: string,
     @Param('accountId') accountId: string,
     @Query() query: Record<string, string>,
+    @Req() req: RawBodyRequest,
   ): Promise<string> {
     const provider = providerFromSlug(slug);
     if (!provider) throw new NotFoundException('Unknown provider');
 
     const row = await this.configs.routeInbound(provider, accountId);
     if (!row) throw new NotFoundException('Unknown WhatsApp account');
+
+    if (query['hub.verify_token'] !== undefined) {
+      let adapter;
+      try {
+        adapter = this.configs.adapterFor(row);
+      } catch (err) {
+        this.logger.error(
+          `Cannot build ${provider} adapter for account ${accountId}: ` +
+            `${err instanceof Error ? err.message : String(err)}`,
+        );
+        throw new ForbiddenException('Invalid webhook verify token');
+      }
+
+      // The `token` the callback URL carries would satisfy the adapter's
+      // catch-all fallback on its own, which would let a mistyped verify token
+      // through and put us right back to a meaningless "Verified" tick. Drop it
+      // so this handshake can only be answered by the verify token itself.
+      const { token: _urlToken, ...handshakeQuery } = query;
+      const ctx: WebhookVerificationContext = {
+        headers: req.headers,
+        query: handshakeQuery as Record<string, unknown>,
+        rawBody: Buffer.alloc(0),
+        body: undefined,
+      };
+
+      if (!adapter.verifyWebhook(ctx)) {
+        this.logger.warn(
+          `Rejected ${provider} webhook handshake for account ${accountId}: verify token mismatch`,
+        );
+        throw new ForbiddenException('Invalid webhook verify token');
+      }
+    }
 
     this.logger.log(`Webhook probe for ${provider} account ${accountId}`);
     return query['hub.challenge'] ?? query.challenge ?? 'OK';
@@ -81,6 +121,11 @@ export class WebhookController {
   ): Promise<string> {
     const provider = providerFromSlug(slug);
     if (!provider) throw new NotFoundException('Unknown provider');
+
+    // Logged before anything can reject it: when a channel goes quiet, the first
+    // question is always whether the provider is calling us at all, and silence
+    // here answers it without guesswork.
+    this.logger.log(`Inbound ${provider} webhook for account ${accountId}`);
 
     const row = await this.configs.routeInbound(provider, accountId);
     if (!row) {
