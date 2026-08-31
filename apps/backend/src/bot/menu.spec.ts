@@ -140,6 +140,20 @@ describe('the shipped flow', () => {
     }
   });
 
+  // Options are checked above; `nextKey` is the other way a node hands over,
+  // and a dangling one dead-ends the conversation just as silently.
+  it('points every nextKey at a node that exists', () => {
+    for (const node of FLOW_NODES) {
+      if (!node.nextKey) continue;
+      expect(FLOW_NODES.some((n) => n.key === node.nextKey)).toBe(true);
+    }
+  });
+
+  it('gives every node a unique key', () => {
+    const keys = FLOW_NODES.map((n) => n.key);
+    expect(new Set(keys).size).toBe(keys.length);
+  });
+
   it('keeps every row title within the 24-character limit', () => {
     for (const node of menus) {
       for (const o of node.options ?? []) {

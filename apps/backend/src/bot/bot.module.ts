@@ -4,12 +4,13 @@ import { WhatsappModule } from '../whatsapp/whatsapp.module';
 import { BotEngineService } from './bot-engine.service';
 import { BotFlowsController } from './bot-flows.controller';
 import { BotService } from './bot.service';
+import { FlowSyncService } from './flow-sync.service';
 import { OrderLookupService } from './order-lookup.service';
 
 @Module({
   imports: [LeadsModule, WhatsappModule],
   controllers: [BotFlowsController],
-  providers: [BotEngineService, BotService, OrderLookupService],
+  providers: [BotEngineService, BotService, FlowSyncService, OrderLookupService],
   exports: [BotService, BotEngineService],
 })
 export class BotModule {}
