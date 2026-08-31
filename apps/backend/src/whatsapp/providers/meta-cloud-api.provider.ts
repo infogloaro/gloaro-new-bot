@@ -47,7 +47,8 @@ interface MetaTextMessage {
   to: string;
   type: "text";
   text: {
-    text: string;
+    /** Meta names this `body`; a `text` key here is rejected outright. */
+    body: string;
     preview_url?: boolean;
   };
 }
@@ -482,7 +483,7 @@ export class MetaCloudApiProvider extends WhatsAppProvider {
           to,
           type: "text",
           text: {
-            text: message.text,
+            body: message.text,
             preview_url: message.previewUrl,
           },
         };

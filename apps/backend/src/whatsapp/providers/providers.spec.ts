@@ -175,6 +175,61 @@ describe("meta cloud api inbound", () => {
     });
   });
 
+  // Meta validates the payload against a strict JSON schema and rejects the
+  // whole message on any unexpected key, so the shape matters exactly.
+  describe("outbound payload shape", () => {
+    const build = (message: unknown) =>
+      (meta() as unknown as {
+        buildSendRequest: (m: unknown, to: string) => Record<string, any>;
+      }).buildSendRequest(message, "919751464715");
+
+    it("puts text in `body`, which is what Meta requires", () => {
+      const req = build({ type: "text", text: "Which category?", to: "x" });
+      expect(req.text).toEqual({ body: "Which category?", preview_url: undefined });
+      // `text.text` is the shape Meta rejects outright - guard against it
+      // coming back, because the failure is invisible until send time.
+      expect(req.text).not.toHaveProperty("text");
+    });
+
+    it("sends a list as an interactive body with sections", () => {
+      const req = build({
+        type: "list",
+        text: "Pick one",
+        buttonText: "Select category",
+        sections: [{ title: "All", rows: [{ id: "1", title: "Electronics" }] }],
+        to: "x",
+      });
+      expect(req.type).toBe("interactive");
+      expect(req.interactive.type).toBe("list");
+      expect(req.interactive.body).toEqual({ text: "Pick one" });
+      expect(req.interactive.action.button).toBe("Select category");
+    });
+
+    it("sends buttons as reply objects", () => {
+      const req = build({
+        type: "buttons",
+        text: "Confirm?",
+        buttons: [{ id: "YES", title: "Yes" }],
+        to: "x",
+      });
+      expect(req.interactive.body).toEqual({ text: "Confirm?" });
+      expect(req.interactive.action.buttons[0]).toEqual({
+        type: "reply",
+        reply: { id: "YES", title: "Yes" },
+      });
+    });
+
+    it("sends media by link with its caption", () => {
+      const req = build({
+        type: "image",
+        mediaUrl: "https://x.test/a.jpg",
+        caption: "Hi",
+        to: "x",
+      });
+      expect(req.image).toEqual({ link: "https://x.test/a.jpg", caption: "Hi" });
+    });
+  });
+
   it("accepts the GET handshake only for the configured verify token", () => {
     expect(
       meta().verifyWebhook(ctx({}, { "hub.verify_token": "verify-me" })),
