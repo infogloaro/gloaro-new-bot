@@ -34,9 +34,10 @@ USER gloaro
 
 EXPOSE 3000
 
-# The ALB target group points at this.
+# The ALB target group points at this. Railway and other hosts inject their own
+# PORT, so probe whatever the app is actually listening on, not a fixed 3000.
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
-  CMD node -e "require('http').get('http://127.0.0.1:3000/health',r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))"
+  CMD node -e "const p=process.env.PORT||3000;require('http').get('http://127.0.0.1:'+p+'/health',r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))"
 
 ENTRYPOINT ["dumb-init", "--"]
 # Migrations are applied at start so a new ECS task never runs against an old schema.
