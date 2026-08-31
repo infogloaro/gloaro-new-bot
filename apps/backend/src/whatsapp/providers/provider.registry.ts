@@ -2,12 +2,13 @@ import {
   ProviderDescriptor,
   ResolvedProviderConfig,
   WhatsAppProviderId,
-} from '../provider.types';
-import { AiSensyProvider } from './aisensy.provider';
-import { Dialog360Provider } from './dialog360.provider';
-import { GupshupProvider } from './gupshup.provider';
-import { WhatsAppProvider } from './provider.base';
-import { UltraMsgProvider } from './ultramsg.provider';
+} from "../provider.types";
+import { AiSensyProvider } from "./aisensy.provider";
+import { Dialog360Provider } from "./dialog360.provider";
+import { GupshupProvider } from "./gupshup.provider";
+import { MetaCloudApiProvider } from "./meta-cloud-api.provider";
+import { WhatsAppProvider } from "./provider.base";
+import { UltraMsgProvider } from "./ultramsg.provider";
 
 /**
  * The one place that knows which adapter classes exist.
@@ -16,9 +17,12 @@ import { UltraMsgProvider } from './ultramsg.provider';
  * in the bot engine, the conversation layer or the admin UI changes, because
  * they only ever see `WhatsAppProviderId` and the descriptor.
  */
-type ProviderConstructor = new (config: ResolvedProviderConfig) => WhatsAppProvider;
+type ProviderConstructor = new (
+  config: ResolvedProviderConfig,
+) => WhatsAppProvider;
 
 const CONSTRUCTORS: Record<WhatsAppProviderId, ProviderConstructor> = {
+  META: MetaCloudApiProvider,
   ULTRAMSG: UltraMsgProvider,
   GUPSHUP: GupshupProvider,
   AISENSY: AiSensyProvider,
@@ -26,15 +30,19 @@ const CONSTRUCTORS: Record<WhatsAppProviderId, ProviderConstructor> = {
 };
 
 const DESCRIPTORS: Record<WhatsAppProviderId, () => ProviderDescriptor> = {
+  META: MetaCloudApiProvider.descriptor,
   ULTRAMSG: UltraMsgProvider.descriptor,
   GUPSHUP: GupshupProvider.descriptor,
   AISENSY: AiSensyProvider.descriptor,
   DIALOG360: Dialog360Provider.descriptor,
 };
 
-export function createProvider(config: ResolvedProviderConfig): WhatsAppProvider {
+export function createProvider(
+  config: ResolvedProviderConfig,
+): WhatsAppProvider {
   const Ctor = CONSTRUCTORS[config.provider];
-  if (!Ctor) throw new Error(`No adapter registered for provider ${config.provider}`);
+  if (!Ctor)
+    throw new Error(`No adapter registered for provider ${config.provider}`);
   return new Ctor(config);
 }
 
@@ -45,7 +53,9 @@ export function describeProvider(id: WhatsAppProviderId): ProviderDescriptor {
 
 /** Everything the admin dropdown needs, in display order. */
 export function allDescriptors(): ProviderDescriptor[] {
-  return (Object.keys(DESCRIPTORS) as WhatsAppProviderId[]).map(describeProvider);
+  return (Object.keys(DESCRIPTORS) as WhatsAppProviderId[]).map(
+    describeProvider,
+  );
 }
 
 /** Maps a `/webhooks/whatsapp/:slug` segment to a provider id. */

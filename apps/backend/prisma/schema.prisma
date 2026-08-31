@@ -79,6 +79,7 @@ enum WebhookEventStatus {
 /// added as one more value plus one more adapter when the time comes, with no
 /// change to the bot engine.
 enum WhatsAppProviderType {
+  META
   ULTRAMSG
   GUPSHUP
   AISENSY

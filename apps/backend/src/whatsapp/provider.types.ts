@@ -11,19 +11,27 @@
 // ---------------------------------------------------------------------------
 
 /** Kept in sync with the `WhatsAppProviderType` Prisma enum. */
-export const PROVIDER_IDS = ['ULTRAMSG', 'GUPSHUP', 'AISENSY', 'DIALOG360'] as const;
+export const PROVIDER_IDS = [
+  "META",
+  "ULTRAMSG",
+  "GUPSHUP",
+  "AISENSY",
+  "DIALOG360",
+] as const;
 
 export type WhatsAppProviderId = (typeof PROVIDER_IDS)[number];
 
 export const isProviderId = (value: unknown): value is WhatsAppProviderId =>
-  typeof value === 'string' && (PROVIDER_IDS as readonly string[]).includes(value);
+  typeof value === "string" &&
+  (PROVIDER_IDS as readonly string[]).includes(value);
 
 /** URL slug used in `/webhooks/whatsapp/:slug`, mapped to the provider id. */
 export const PROVIDER_SLUGS: Record<string, WhatsAppProviderId> = {
-  ultramsg: 'ULTRAMSG',
-  gupshup: 'GUPSHUP',
-  aisensy: 'AISENSY',
-  '360dialog': 'DIALOG360',
+  meta: "META",
+  ultramsg: "ULTRAMSG",
+  gupshup: "GUPSHUP",
+  aisensy: "AISENSY",
+  "360dialog": "DIALOG360",
 };
 
 // ---------------------------------------------------------------------------
@@ -31,16 +39,16 @@ export const PROVIDER_SLUGS: Record<string, WhatsAppProviderId> = {
 // ---------------------------------------------------------------------------
 
 export type OutboundMessageType =
-  | 'text'
-  | 'image'
-  | 'document'
-  | 'audio'
-  | 'video'
-  | 'sticker'
-  | 'location'
-  | 'template'
-  | 'buttons'
-  | 'list';
+  | "text"
+  | "image"
+  | "document"
+  | "audio"
+  | "video"
+  | "sticker"
+  | "location"
+  | "template"
+  | "buttons"
+  | "list";
 
 interface OutboundBase {
   /** Recipient MSISDN, digits only, international format. e.g. 919876543210 */
@@ -50,14 +58,14 @@ interface OutboundBase {
 }
 
 export interface OutboundTextMessage extends OutboundBase {
-  type: 'text';
+  type: "text";
   text: string;
   /** Render a link preview for the first URL in the body, where supported. */
   previewUrl?: boolean;
 }
 
 export interface OutboundMediaMessage extends OutboundBase {
-  type: 'image' | 'document' | 'audio' | 'video' | 'sticker';
+  type: "image" | "document" | "audio" | "video" | "sticker";
   /** Publicly reachable URL. Providers fetch the bytes themselves. */
   mediaUrl: string;
   caption?: string;
@@ -66,7 +74,7 @@ export interface OutboundMediaMessage extends OutboundBase {
 }
 
 export interface OutboundLocationMessage extends OutboundBase {
-  type: 'location';
+  type: "location";
   latitude: number;
   longitude: number;
   name?: string;
@@ -74,14 +82,14 @@ export interface OutboundLocationMessage extends OutboundBase {
 }
 
 export interface TemplateComponentParameter {
-  type: 'text' | 'currency' | 'date_time' | 'image' | 'document' | 'video';
+  type: "text" | "currency" | "date_time" | "image" | "document" | "video";
   /** For `text`; the other kinds carry `mediaUrl`. */
   text?: string;
   mediaUrl?: string;
 }
 
 export interface OutboundTemplateMessage extends OutboundBase {
-  type: 'template';
+  type: "template";
   templateName: string;
   /** BCP-47-ish code the provider expects, e.g. en, en_US. */
   languageCode: string;
@@ -100,7 +108,7 @@ export interface InteractiveButton {
 }
 
 export interface OutboundButtonsMessage extends OutboundBase {
-  type: 'buttons';
+  type: "buttons";
   text: string;
   header?: string;
   footer?: string;
@@ -120,7 +128,7 @@ export interface InteractiveListSection {
 }
 
 export interface OutboundListMessage extends OutboundBase {
-  type: 'list';
+  type: "list";
   text: string;
   header?: string;
   footer?: string;
@@ -143,16 +151,16 @@ export type OutboundMessage =
 
 /** Why a send failed, in terms the caller can act on without knowing the vendor. */
 export type ProviderErrorCode =
-  | 'AUTH'
-  | 'INVALID_RECIPIENT'
-  | 'INVALID_REQUEST'
-  | 'UNSUPPORTED'
-  | 'RATE_LIMITED'
-  | 'TIMEOUT'
-  | 'NETWORK'
-  | 'PROVIDER_ERROR'
-  | 'NOT_CONFIGURED'
-  | 'DISABLED';
+  | "AUTH"
+  | "INVALID_RECIPIENT"
+  | "INVALID_REQUEST"
+  | "UNSUPPORTED"
+  | "RATE_LIMITED"
+  | "TIMEOUT"
+  | "NETWORK"
+  | "PROVIDER_ERROR"
+  | "NOT_CONFIGURED"
+  | "DISABLED";
 
 export interface SendResult {
   success: boolean;
@@ -173,7 +181,7 @@ export class ProviderError extends Error {
     readonly retryAfterSeconds?: number,
   ) {
     super(message);
-    this.name = 'ProviderError';
+    this.name = "ProviderError";
   }
 }
 
@@ -199,17 +207,17 @@ export interface ProviderCapabilities {
 // ---------------------------------------------------------------------------
 
 export type InboundMessageType =
-  | 'text'
-  | 'interactive'
-  | 'button'
-  | 'image'
-  | 'document'
-  | 'audio'
-  | 'video'
-  | 'sticker'
-  | 'location'
-  | 'contacts'
-  | 'unsupported';
+  | "text"
+  | "interactive"
+  | "button"
+  | "image"
+  | "document"
+  | "audio"
+  | "video"
+  | "sticker"
+  | "location"
+  | "contacts"
+  | "unsupported";
 
 /**
  * The single internal shape every provider webhook collapses to. `tenantId` is
@@ -246,9 +254,9 @@ export interface NormalizedInboundMessage {
 }
 
 /** Same shape minus the fields only the controller can supply. */
-export type ParsedInboundMessage = Omit<NormalizedInboundMessage, 'tenantId'>;
+export type ParsedInboundMessage = Omit<NormalizedInboundMessage, "tenantId">;
 
-export type DeliveryStatus = 'SENT' | 'DELIVERED' | 'READ' | 'FAILED';
+export type DeliveryStatus = "SENT" | "DELIVERED" | "READ" | "FAILED";
 
 export interface NormalizedStatusEvent {
   provider: WhatsAppProviderId;
@@ -273,7 +281,11 @@ export const EMPTY_WEBHOOK: ParsedWebhook = { messages: [], statuses: [] };
 // Connection
 // ---------------------------------------------------------------------------
 
-export type ConnectionState = 'CONNECTED' | 'DISCONNECTED' | 'PENDING' | 'ERROR';
+export type ConnectionState =
+  | "CONNECTED"
+  | "DISCONNECTED"
+  | "PENDING"
+  | "ERROR";
 
 export interface ConnectionTestResult {
   state: ConnectionState;
@@ -292,7 +304,7 @@ export interface ProviderConfigField {
   name: string;
   label: string;
   /** `secret` fields are encrypted at rest and never returned to the browser. */
-  type: 'text' | 'secret' | 'url' | 'number' | 'select';
+  type: "text" | "secret" | "url" | "number" | "select";
   required: boolean;
   placeholder?: string;
   help?: string;
