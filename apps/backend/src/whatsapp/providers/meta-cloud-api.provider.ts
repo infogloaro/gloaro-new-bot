@@ -293,6 +293,11 @@ interface MetaWebhookPayload {
 
 const INBOUND_TYPE_MAP: Record<string, InboundMessageType> = {
   text: "text",
+  // A tapped menu row or button arrives as `interactive` (or `button` for the
+  // template quick-reply form), never as text. Leaving these out drops every
+  // menu selection on the floor: the bot sends its menu and then appears dead.
+  interactive: "interactive",
+  button: "button",
   image: "image",
   document: "document",
   audio: "audio",
@@ -812,6 +817,39 @@ export class MetaCloudApiProvider extends WhatsAppProvider {
           timestamp,
           messageType: "text",
           messageText: msg.text?.body ?? "",
+          profileName,
+          phoneNumber: this.phoneNumber,
+          provider: this.id,
+          raw: msg,
+        };
+
+      // The engine matches on `replyId` first and falls back to the visible
+      // title, so both must be carried through for a menu to work.
+      case "interactive": {
+        const reply =
+          msg.interactive?.button_reply ?? msg.interactive?.list_reply;
+        return {
+          messageId,
+          customerNumber,
+          timestamp,
+          messageType: "interactive",
+          messageText: reply?.title ?? reply?.id ?? "",
+          replyId: reply?.id,
+          profileName,
+          phoneNumber: this.phoneNumber,
+          provider: this.id,
+          raw: msg,
+        };
+      }
+
+      case "button":
+        return {
+          messageId,
+          customerNumber,
+          timestamp,
+          messageType: "button",
+          messageText: msg.button?.text ?? msg.button?.payload ?? "",
+          replyId: msg.button?.payload,
           profileName,
           phoneNumber: this.phoneNumber,
           provider: this.id,

@@ -9,6 +9,7 @@ import {
 import { AiSensyProvider } from "./aisensy.provider";
 import { Dialog360Provider } from "./dialog360.provider";
 import { GupshupProvider } from "./gupshup.provider";
+import { MetaCloudApiProvider } from "./meta-cloud-api.provider";
 import { UltraMsgProvider } from "./ultramsg.provider";
 import {
   allDescriptors,
@@ -49,6 +50,15 @@ const dialog360 = () =>
   new Dialog360Provider(
     config("DIALOG360", { apiKey: "k", environment: "production" }),
   );
+const meta = () =>
+  new MetaCloudApiProvider(
+    config("META", {
+      phoneNumberId: "PN1",
+      businessAccountId: "WABA1",
+      accessToken: "tok",
+      webhookToken: "verify-me",
+    }),
+  );
 const aisensy = (extra: Record<string, string> = {}) =>
   new AiSensyProvider(
     config("AISENSY", {
@@ -58,6 +68,122 @@ const aisensy = (extra: Record<string, string> = {}) =>
       ...extra,
     }),
   );
+
+// ---------------------------------------------------------------------------
+// Meta Cloud API
+// ---------------------------------------------------------------------------
+
+describe("meta cloud api inbound", () => {
+  const wrapMeta = (message: unknown) => ({
+    object: "whatsapp_business_account",
+    entry: [
+      {
+        id: "WABA1",
+        changes: [
+          {
+            field: "messages",
+            value: {
+              messaging_product: "whatsapp",
+              metadata: { phone_number_id: "PN1" },
+              contacts: [{ profile: { name: "Ajith" }, wa_id: "919751464715" }],
+              messages: [message],
+            },
+          },
+        ],
+      },
+    ],
+  });
+
+  it("parses a plain text message", () => {
+    const { messages } = meta().parseWebhook(
+      ctx(
+        wrapMeta({
+          from: "919751464715",
+          id: "wamid.1",
+          type: "text",
+          text: { body: "hi" },
+        }),
+      ),
+    );
+    expect(messages[0]).toMatchObject({
+      messageType: "text",
+      messageText: "hi",
+      profileName: "Ajith",
+    });
+  });
+
+  // A tapped menu row is the only way through the flow, and it arrives as
+  // `interactive` - dropping it makes the bot look dead after its own menu.
+  it("keeps list replies and their payload id", () => {
+    const { messages } = meta().parseWebhook(
+      ctx(
+        wrapMeta({
+          from: "919751464715",
+          id: "wamid.2",
+          type: "interactive",
+          interactive: {
+            type: "list_reply",
+            list_reply: { id: "ROW_1", title: "GloAro Mart" },
+          },
+        }),
+      ),
+    );
+    expect(messages).toHaveLength(1);
+    expect(messages[0]).toMatchObject({
+      messageType: "interactive",
+      messageText: "GloAro Mart",
+      replyId: "ROW_1",
+    });
+  });
+
+  it("keeps button replies and their payload id", () => {
+    const { messages } = meta().parseWebhook(
+      ctx(
+        wrapMeta({
+          from: "919751464715",
+          id: "wamid.3",
+          type: "interactive",
+          interactive: {
+            type: "button_reply",
+            button_reply: { id: "OPT_2", title: "Digital Network" },
+          },
+        }),
+      ),
+    );
+    expect(messages[0]).toMatchObject({
+      messageType: "interactive",
+      messageText: "Digital Network",
+      replyId: "OPT_2",
+    });
+  });
+
+  it("keeps template quick-reply buttons", () => {
+    const { messages } = meta().parseWebhook(
+      ctx(
+        wrapMeta({
+          from: "919751464715",
+          id: "wamid.4",
+          type: "button",
+          button: { payload: "PAY_1", text: "Yes" },
+        }),
+      ),
+    );
+    expect(messages[0]).toMatchObject({
+      messageType: "button",
+      messageText: "Yes",
+      replyId: "PAY_1",
+    });
+  });
+
+  it("accepts the GET handshake only for the configured verify token", () => {
+    expect(
+      meta().verifyWebhook(ctx({}, { "hub.verify_token": "verify-me" })),
+    ).toBe(true);
+    expect(
+      meta().verifyWebhook(ctx({}, { "hub.verify_token": "wrong" })),
+    ).toBe(false);
+  });
+});
 
 // ---------------------------------------------------------------------------
 // Registry
