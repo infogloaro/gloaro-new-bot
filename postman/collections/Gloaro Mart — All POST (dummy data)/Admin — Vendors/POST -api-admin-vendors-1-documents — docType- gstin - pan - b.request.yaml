@@ -1,0 +1,19 @@
+$kind: http-request
+name: "POST /api/admin/vendors/1/documents — docType: gstin | pan | bank | fssai | other; docNumber or fi"
+description: |-
+  Auth: admin
+
+  docType: gstin | pan | bank | fssai | other; docNumber or fileUrl required
+url: "{{baseUrl}}/api/admin/vendors/1/documents"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "docType": "gstin",
+      "docNumber": "29ABCDE1234F1Z5",
+      "fileUrl": "https://example.com/gst.pdf"
+    }
+order: 1000

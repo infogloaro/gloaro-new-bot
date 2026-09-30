@@ -1,0 +1,25 @@
+$kind: http-request
+name: POST /api/vendor/products/1/variants — attributeValueIds required
+description: |-
+  Auth: vendor
+
+  attributeValueIds required
+url: "{{baseUrl}}/api/vendor/products/1/variants"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "sku": "RICE-5KG",
+      "priceCents": 65000,
+      "mrpCents": 70000,
+      "sortOrder": 0,
+      "attributeValueIds": [
+        1
+      ],
+      "availableQty": 50,
+      "lowStockThreshold": 5
+    }
+order: 6000

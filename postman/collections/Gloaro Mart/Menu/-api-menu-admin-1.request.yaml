@@ -1,0 +1,15 @@
+$kind: http-request
+name: /api/menu/admin
+url: "{{baseUrl}}/api/menu/admin"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 3000

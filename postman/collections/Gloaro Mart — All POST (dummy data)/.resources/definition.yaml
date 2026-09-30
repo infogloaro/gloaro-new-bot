@@ -1,0 +1,12 @@
+$kind: collection
+description: Every POST endpoint with sample bodies. Login first (saves {{token}}). Log in as customer, vendor or admin depending on the request's Auth note. IDs in bodies/paths are placeholders — replace with real ones.
+variables:
+  baseUrl: http://localhost:4000
+  token: ""
+  webhookSecret: ""
+auth:
+  - id: 649881ca-cb3e-4f3b-b300-43942dd21e18
+    type: bearer
+    name: bearer auth
+    credentials:
+      token: "{{token}}"

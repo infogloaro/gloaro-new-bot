@@ -1,0 +1,18 @@
+$kind: http-request
+name: POST /api/vendors/service-areas — pincode variant
+description: |-
+  Auth: vendor
+
+  pincode variant
+url: "{{baseUrl}}/api/vendors/service-areas"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "areaType": "pincode",
+      "pincode": "560038"
+    }
+order: 3000

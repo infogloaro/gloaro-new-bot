@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/orders/:id/review
+url: "{{baseUrl}}/api/orders/id/review"
+method: PUT
+pathVariables:
+  id: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 12000

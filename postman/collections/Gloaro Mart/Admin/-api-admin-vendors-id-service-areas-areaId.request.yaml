@@ -1,0 +1,12 @@
+$kind: http-request
+name: /api/admin/vendors/:id/service-areas/:areaId
+url: "{{baseUrl}}/api/admin/vendors/id/service-areas/areaId"
+method: DELETE
+pathVariables:
+  id: <value>
+  areaId: <value>
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 124000

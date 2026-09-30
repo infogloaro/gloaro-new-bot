@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/notifications/:id/read
+url: "{{baseUrl}}/api/notifications/id/read"
+method: PATCH
+pathVariables:
+  id: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 3000

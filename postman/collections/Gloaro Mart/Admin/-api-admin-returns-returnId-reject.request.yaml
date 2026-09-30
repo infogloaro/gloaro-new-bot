@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/admin/returns/:returnId/reject
+url: "{{baseUrl}}/api/admin/returns/returnId/reject"
+method: POST
+pathVariables:
+  returnId: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 99000

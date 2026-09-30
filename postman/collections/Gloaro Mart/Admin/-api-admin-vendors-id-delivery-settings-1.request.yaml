@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/admin/vendors/:id/delivery-settings
+url: "{{baseUrl}}/api/admin/vendors/id/delivery-settings"
+method: PUT
+pathVariables:
+  id: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 126000

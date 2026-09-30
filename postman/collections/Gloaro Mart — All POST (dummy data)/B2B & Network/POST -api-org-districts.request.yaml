@@ -1,0 +1,14 @@
+$kind: http-request
+name: POST /api/org/districts
+url: "{{baseUrl}}/api/org/districts"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "stateId": 1,
+      "name": "Bengaluru Urban"
+    }
+order: 2000

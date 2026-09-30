@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/admin/media/:id/primary
+url: "{{baseUrl}}/api/admin/media/id/primary"
+method: PATCH
+pathVariables:
+  id: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 65000

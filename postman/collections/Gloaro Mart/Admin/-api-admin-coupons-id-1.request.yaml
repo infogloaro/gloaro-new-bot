@@ -1,0 +1,11 @@
+$kind: http-request
+name: /api/admin/coupons/:id
+url: "{{baseUrl}}/api/admin/coupons/id"
+method: DELETE
+pathVariables:
+  id: <value>
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 89000

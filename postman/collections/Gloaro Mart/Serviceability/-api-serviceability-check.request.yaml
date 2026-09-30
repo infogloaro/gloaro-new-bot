@@ -1,0 +1,15 @@
+$kind: http-request
+name: /api/serviceability/check
+url: "{{baseUrl}}/api/serviceability/check"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 1000

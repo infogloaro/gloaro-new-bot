@@ -1,0 +1,14 @@
+$kind: http-request
+name: POST /api/vendors/service-areas
+url: "{{baseUrl}}/api/vendors/service-areas"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "areaType": "radius",
+      "radiusKm": 10
+    }
+order: 2000

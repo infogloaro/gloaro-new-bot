@@ -1,0 +1,30 @@
+$kind: http-request
+name: POST /api/admin/products — vendorId required
+description: |-
+  Auth: admin
+
+  vendorId required
+url: "{{baseUrl}}/api/admin/products"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "vendorId": 1,
+      "name": "Toor Dal 1kg",
+      "description": "Unpolished toor dal",
+      "priceCents": 15000,
+      "stockQuantity": 200,
+      "gstRatePercent": 5,
+      "moq": 1,
+      "category": "Grocery",
+      "tiers": [
+        {
+          "minQuantity": 10,
+          "unitPriceCents": 14000
+        }
+      ]
+    }
+order: 1000

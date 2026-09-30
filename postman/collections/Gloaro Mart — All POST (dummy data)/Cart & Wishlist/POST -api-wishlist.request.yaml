@@ -1,0 +1,13 @@
+$kind: http-request
+name: POST /api/wishlist
+url: "{{baseUrl}}/api/wishlist"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "productId": 1
+    }
+order: 2000

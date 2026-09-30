@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/admin/payments/:id/refunds
+url: "{{baseUrl}}/api/admin/payments/id/refunds"
+method: POST
+pathVariables:
+  id: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 93000

@@ -1,0 +1,12 @@
+$kind: http-request
+name: /api/vendor/products/:id/variants/:variantId
+url: "{{baseUrl}}/api/vendor/products/id/variants/variantId"
+method: DELETE
+pathVariables:
+  id: <value>
+  variantId: <value>
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 6000

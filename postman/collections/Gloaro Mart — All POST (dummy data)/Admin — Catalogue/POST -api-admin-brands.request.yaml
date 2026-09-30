@@ -1,0 +1,18 @@
+$kind: http-request
+name: POST /api/admin/brands
+url: "{{baseUrl}}/api/admin/brands"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "India Gate",
+      "slug": "india-gate",
+      "logoUrl": "https://example.com/ig.png",
+      "description": "Basmati rice brand",
+      "sortOrder": 0,
+      "isActive": true
+    }
+order: 7000

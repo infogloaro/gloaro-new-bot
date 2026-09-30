@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/matching/reassignments/:id/respond
+url: "{{baseUrl}}/api/matching/reassignments/id/respond"
+method: POST
+pathVariables:
+  id: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 4000

@@ -1,0 +1,11 @@
+$kind: http-request
+name: /api/admin/orders/:id
+url: "{{baseUrl}}/api/admin/orders/id"
+method: GET
+pathVariables:
+  id: <value>
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 49000

@@ -1,0 +1,11 @@
+$kind: http-request
+name: /api/admin/wallets/:vendorId/transactions
+url: "{{baseUrl}}/api/admin/wallets/vendorId/transactions"
+method: GET
+pathVariables:
+  vendorId: <value>
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 117000

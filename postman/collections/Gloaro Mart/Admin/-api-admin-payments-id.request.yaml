@@ -1,0 +1,11 @@
+$kind: http-request
+name: /api/admin/payments/:id
+url: "{{baseUrl}}/api/admin/payments/id"
+method: GET
+pathVariables:
+  id: <value>
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 92000

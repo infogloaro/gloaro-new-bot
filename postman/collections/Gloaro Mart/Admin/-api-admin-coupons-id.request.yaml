@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/admin/coupons/:id
+url: "{{baseUrl}}/api/admin/coupons/id"
+method: PATCH
+pathVariables:
+  id: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 88000

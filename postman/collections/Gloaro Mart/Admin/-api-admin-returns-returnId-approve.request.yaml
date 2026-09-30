@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/admin/returns/:returnId/approve
+url: "{{baseUrl}}/api/admin/returns/returnId/approve"
+method: POST
+pathVariables:
+  returnId: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 98000

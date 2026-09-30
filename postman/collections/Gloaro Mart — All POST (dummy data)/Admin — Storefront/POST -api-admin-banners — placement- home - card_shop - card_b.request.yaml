@@ -1,0 +1,22 @@
+$kind: http-request
+name: "POST /api/admin/banners — placement: home | card_shop | card_b2b | card_nearme; imageD"
+description: |-
+  Auth: admin
+
+  placement: home | card_shop | card_b2b | card_nearme; imageData = base64 data URI
+url: "{{baseUrl}}/api/admin/banners"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "title": "Big saving per day",
+      "subtitle": "Shop top picks",
+      "imageData": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==",
+      "linkUrl": "/category/1",
+      "sortOrder": 0,
+      "placement": "home"
+    }
+order: 1000

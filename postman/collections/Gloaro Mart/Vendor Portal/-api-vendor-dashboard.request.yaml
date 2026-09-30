@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/vendor/dashboard
+url: "{{baseUrl}}/api/vendor/dashboard"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 1000

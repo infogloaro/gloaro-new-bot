@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/addresses/:id/default
+url: "{{baseUrl}}/api/addresses/id/default"
+method: PATCH
+pathVariables:
+  id: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 3000

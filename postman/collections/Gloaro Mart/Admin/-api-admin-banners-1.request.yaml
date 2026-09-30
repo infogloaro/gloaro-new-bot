@@ -1,0 +1,15 @@
+$kind: http-request
+name: /api/admin/banners
+url: "{{baseUrl}}/api/admin/banners"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 119000

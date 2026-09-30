@@ -1,0 +1,14 @@
+$kind: http-request
+name: POST /api/org/chapters
+url: "{{baseUrl}}/api/org/chapters"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "districtId": 1,
+      "name": "Indiranagar Chapter"
+    }
+order: 3000

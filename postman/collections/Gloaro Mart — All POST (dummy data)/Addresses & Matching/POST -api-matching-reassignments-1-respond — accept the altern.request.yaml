@@ -1,0 +1,17 @@
+$kind: http-request
+name: POST /api/matching/reassignments/1/respond — accept the alternative shop; false declines
+description: |-
+  Auth: customer
+
+  accept the alternative shop; false declines
+url: "{{baseUrl}}/api/matching/reassignments/1/respond"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "accept": true
+    }
+order: 4000

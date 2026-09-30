@@ -1,0 +1,17 @@
+$kind: http-request
+name: POST /api/orders/1/reject — vendor rejects an order → triggers reassignment
+description: |-
+  Auth: vendor / admin
+
+  vendor rejects an order → triggers reassignment
+url: "{{baseUrl}}/api/orders/1/reject"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "reason": "Out of stock"
+    }
+order: 5000

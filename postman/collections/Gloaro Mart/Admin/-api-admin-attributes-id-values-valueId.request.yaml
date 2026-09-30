@@ -1,0 +1,18 @@
+$kind: http-request
+name: /api/admin/attributes/:id/values/:valueId
+url: "{{baseUrl}}/api/admin/attributes/id/values/valueId"
+method: PATCH
+pathVariables:
+  id: <value>
+  valueId: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 70000

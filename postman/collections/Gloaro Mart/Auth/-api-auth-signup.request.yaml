@@ -1,0 +1,15 @@
+$kind: http-request
+name: /api/auth/signup
+url: "{{baseUrl}}/api/auth/signup"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        "fullName": "<fullName>",
+        "email": "<email>",
+        "phoneNumber": "<phoneNumber>",
+        "password": "<password>",
+        "role": "<role>"
+    }
+order: 1000

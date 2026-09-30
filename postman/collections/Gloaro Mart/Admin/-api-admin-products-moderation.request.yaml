@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/admin/products/moderation
+url: "{{baseUrl}}/api/admin/products/moderation"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 34000

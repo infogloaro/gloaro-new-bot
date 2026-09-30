@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/admin/catalogue/export
+url: "{{baseUrl}}/api/admin/catalogue/export"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 32000

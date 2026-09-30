@@ -1,0 +1,15 @@
+$kind: http-request
+name: /api/vendors/profile
+url: "{{baseUrl}}/api/vendors/profile"
+method: PATCH
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 3000

@@ -1,0 +1,11 @@
+$kind: http-request
+name: /api/payments/group/:groupId
+url: "{{baseUrl}}/api/payments/group/groupId"
+method: GET
+pathVariables:
+  groupId: <value>
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 2000

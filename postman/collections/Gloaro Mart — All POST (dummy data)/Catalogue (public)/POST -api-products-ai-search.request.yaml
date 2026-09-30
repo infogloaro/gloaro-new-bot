@@ -1,0 +1,15 @@
+$kind: http-request
+name: POST /api/products/ai-search
+url: "{{baseUrl}}/api/products/ai-search"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "query": "cheap basmati rice"
+    }
+auth:
+  type: noauth
+order: 1000

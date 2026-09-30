@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/admin/referrals
+url: "{{baseUrl}}/api/admin/referrals"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 113000

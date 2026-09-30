@@ -1,0 +1,11 @@
+$kind: http-request
+name: /api/vendors/service-areas/:id
+url: "{{baseUrl}}/api/vendors/service-areas/id"
+method: DELETE
+pathVariables:
+  id: <value>
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 8000

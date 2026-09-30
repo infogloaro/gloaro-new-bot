@@ -1,0 +1,15 @@
+$kind: http-request
+name: POST /api/coupons/validate
+url: "{{baseUrl}}/api/coupons/validate"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "vendorId": 1,
+      "code": "WELCOME10",
+      "subtotalCents": 100000
+    }
+order: 1000

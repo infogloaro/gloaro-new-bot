@@ -1,0 +1,23 @@
+$kind: http-request
+name: "POST /api/auth/signup — role: customer or vendor"
+description: |-
+  Auth: no login
+
+  role: customer or vendor
+url: "{{baseUrl}}/api/auth/signup"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "fullName": "Test Customer",
+      "email": "customer@example.com",
+      "phoneNumber": "9876543210",
+      "password": "Password123",
+      "role": "customer"
+    }
+auth:
+  type: noauth
+order: 1000

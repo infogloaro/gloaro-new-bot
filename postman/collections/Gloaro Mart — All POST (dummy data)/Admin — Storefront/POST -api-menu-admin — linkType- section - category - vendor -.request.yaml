@@ -1,0 +1,22 @@
+$kind: http-request
+name: "POST /api/menu/admin — linkType: section | category | vendor | url"
+description: |-
+  Auth: admin
+
+  linkType: section | category | vendor | url
+url: "{{baseUrl}}/api/menu/admin"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "label": "Offers",
+      "iconKey": "local_offer",
+      "linkType": "section",
+      "linkValue": "offers",
+      "sortOrder": 1,
+      "isActive": true
+    }
+order: 2000

@@ -1,0 +1,18 @@
+$kind: http-request
+name: "POST /api/orders/1/returns — reasonCode: damaged | wrong_item | not_as_described | missin"
+description: |-
+  Auth: customer
+
+  reasonCode: damaged | wrong_item | not_as_described | missing_items | other
+url: "{{baseUrl}}/api/orders/1/returns"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "reasonCode": "damaged",
+      "comment": "Box was broken"
+    }
+order: 4000

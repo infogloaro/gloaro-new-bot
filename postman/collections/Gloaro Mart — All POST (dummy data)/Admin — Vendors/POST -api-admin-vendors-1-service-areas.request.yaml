@@ -1,0 +1,14 @@
+$kind: http-request
+name: POST /api/admin/vendors/1/service-areas
+url: "{{baseUrl}}/api/admin/vendors/1/service-areas"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "areaType": "pincode",
+      "pincode": "560038"
+    }
+order: 2000

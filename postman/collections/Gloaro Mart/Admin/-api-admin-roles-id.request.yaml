@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/admin/roles/:id
+url: "{{baseUrl}}/api/admin/roles/id"
+method: PATCH
+pathVariables:
+  id: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 17000

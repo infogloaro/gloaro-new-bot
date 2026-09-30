@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/admin/inventory
+url: "{{baseUrl}}/api/admin/inventory"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 73000

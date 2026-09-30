@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/admin/refunds/:id/reject
+url: "{{baseUrl}}/api/admin/refunds/id/reject"
+method: POST
+pathVariables:
+  id: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 96000

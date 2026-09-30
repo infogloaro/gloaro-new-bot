@@ -1,0 +1,26 @@
+$kind: http-request
+name: POST /api/products — priceCents in paise
+description: |-
+  Auth: vendor
+
+  priceCents in paise
+url: "{{baseUrl}}/api/products"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "Basmati Rice 5kg",
+      "description": "Premium aged basmati",
+      "priceCents": 65000,
+      "currency": "INR",
+      "stockQuantity": 100,
+      "imageUrl": "https://example.com/rice.jpg",
+      "category": "Grocery",
+      "brandId": null,
+      "gstRatePercent": 5,
+      "moq": 1
+    }
+order: 4000

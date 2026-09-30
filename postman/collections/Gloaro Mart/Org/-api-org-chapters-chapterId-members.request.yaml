@@ -1,0 +1,11 @@
+$kind: http-request
+name: /api/org/chapters/:chapterId/members
+url: "{{baseUrl}}/api/org/chapters/chapterId/members"
+method: GET
+pathVariables:
+  chapterId: <value>
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 7000

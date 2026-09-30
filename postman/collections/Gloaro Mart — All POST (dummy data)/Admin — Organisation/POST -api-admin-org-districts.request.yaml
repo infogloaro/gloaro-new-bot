@@ -1,0 +1,14 @@
+$kind: http-request
+name: POST /api/admin/org/districts
+url: "{{baseUrl}}/api/admin/org/districts"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "stateId": 1,
+      "name": "Chennai"
+    }
+order: 2000

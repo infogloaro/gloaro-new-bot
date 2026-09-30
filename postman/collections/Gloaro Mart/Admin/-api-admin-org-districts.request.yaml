@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/admin/org/districts
+url: "{{baseUrl}}/api/admin/org/districts"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 104000

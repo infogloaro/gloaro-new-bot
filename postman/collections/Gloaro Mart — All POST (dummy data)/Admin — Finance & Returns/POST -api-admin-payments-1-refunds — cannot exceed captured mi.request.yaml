@@ -1,0 +1,19 @@
+$kind: http-request
+name: POST /api/admin/payments/1/refunds — cannot exceed captured minus refunded
+description: |-
+  Auth: admin
+
+  cannot exceed captured minus refunded
+url: "{{baseUrl}}/api/admin/payments/1/refunds"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "amountCents": 10000,
+      "reason": "Damaged item",
+      "orderId": 1
+    }
+order: 1000

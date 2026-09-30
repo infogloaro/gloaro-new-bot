@@ -1,0 +1,25 @@
+$kind: http-request
+name: "POST /api/vendors/profile — businessType: b2b | b2c | both"
+description: |-
+  Auth: vendor
+
+  businessType: b2b | b2c | both
+url: "{{baseUrl}}/api/vendors/profile"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "businessName": "Sharma Traders",
+      "businessType": "both",
+      "gstNumber": "29ABCDE1234F1Z5",
+      "addressLine": "45, Market Road",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "pincode": "560001",
+      "latitude": 12.9716,
+      "longitude": 77.5946
+    }
+order: 1000

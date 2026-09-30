@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/org/states
+url: "{{baseUrl}}/api/org/states"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 1000

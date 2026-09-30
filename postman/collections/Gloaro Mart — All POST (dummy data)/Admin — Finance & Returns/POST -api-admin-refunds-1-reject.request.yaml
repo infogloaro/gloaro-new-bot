@@ -1,0 +1,13 @@
+$kind: http-request
+name: POST /api/admin/refunds/1/reject
+url: "{{baseUrl}}/api/admin/refunds/1/reject"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "note": "Not eligible"
+    }
+order: 3000

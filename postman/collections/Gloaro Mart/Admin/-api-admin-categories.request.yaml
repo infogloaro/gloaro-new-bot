@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/admin/categories
+url: "{{baseUrl}}/api/admin/categories"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 76000

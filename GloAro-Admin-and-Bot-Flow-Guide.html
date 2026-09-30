@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GloAro Admin &amp; WhatsApp Bot Flow Guide</title>
+<style>
+  @page { size: A4; margin: 16mm 15mm 17mm; }
+  * { box-sizing: border-box; }
+  body { font-family: "Segoe UI", Arial, sans-serif; color:#16243a; font-size:10pt; line-height:1.45; margin:0; }
+  h1 { color:#0a6343; font-size:18pt; margin:21px 0 9px; padding-bottom:5px; border-bottom:2px solid #cfe6d9; page-break-after:avoid; }
+  h2 { color:#163d73; font-size:12pt; margin:16px 0 6px; page-break-after:avoid; }
+  h3 { color:#163d73; font-size:10.5pt; margin:12px 0 4px; page-break-after:avoid; }
+  p { margin:0 0 8px; } ul,ol { margin:4px 0 10px; padding-left:20px; } li { margin:3px 0; }
+  table { width:100%; border-collapse:collapse; margin:7px 0 12px; font-size:9pt; } th,td { border:1px solid #cbd6df; padding:5px 7px; vertical-align:top; } th { background:#163d73; color:#fff; text-align:left; } tr:nth-child(even) td { background:#f4f8f6; }
+  .cover { height:255mm; display:flex; flex-direction:column; justify-content:center; padding:0 18mm; page-break-after:always; background:linear-gradient(135deg,#f3faf6,#fff 52%,#eef4fb); }
+  .brand { font-weight:800; font-size:39pt; color:#0a6343; letter-spacing:-1.5px; } .gold { color:#d69a10; }
+  .cover h1 { border:0; color:#163d73; font-size:23pt; margin:10px 0; padding:0; } .cover p { font-size:13pt; color:#526477; }
+  .rule { width:76mm; height:4px; background:#d69a10; margin:18px 0; } .meta { margin-top:24px; font-size:10.5pt!important; }
+  .tag { display:inline-block; align-self:flex-start; border:1px solid #0a6343; color:#0a6343; padding:5px 12px; border-radius:20px; font-weight:600; margin-top:24px; }
+  .flow { display:flex; gap:5px; align-items:stretch; flex-wrap:wrap; margin:9px 0 13px; page-break-inside:avoid; }
+  .box { background:#edf7f1; border:1px solid #a9d3bb; border-radius:5px; padding:8px; flex:1 1 125px; font-weight:600; text-align:center; } .arrow { align-self:center; font-size:15pt; color:#0a6343; }
+  .note { background:#fff7df; border-left:4px solid #d69a10; padding:8px 10px; margin:8px 0 12px; } .success { background:#eaf7ef; border-left:4px solid #0a6343; padding:8px 10px; margin:8px 0 12px; }
+  .code { font-family:Consolas,monospace; background:#f1f4f6; border-radius:3px; padding:1px 4px; font-size:8.5pt; } .small { font-size:8.5pt; color:#506174; } .page { page-break-before:always; }
+  .toc td { border:0; padding:3px; } .toc tr:nth-child(even) td { background:transparent; } .toc a { color:#163d73; text-decoration:none; }
+  .branch { border-left:3px solid #d69a10; padding-left:10px; margin:8px 0 12px; page-break-inside:avoid; }
+</style>
+</head>
+<body>
+<section class="cover">
+  <div class="brand">Glo<span class="gold">Aro</span></div><div class="rule"></div>
+  <h1>Admin &amp; WhatsApp Bot<br>Operational Flow Guide</h1>
+  <p>End-to-end reference for administrators, sales and support teams.</p>
+  <p class="meta">Version 1.0 &nbsp;|&nbsp; Generated 1 September 2026<br>Based on the implemented application flows and configuration.</p>
+  <span class="tag">Internal Operations Document</span>
+</section>
+
+<h1>Purpose and scope</h1>
+<p>This guide explains how a WhatsApp customer journey becomes a managed GloAro lead, and how an administrator configures, monitors and intervenes in that journey. It covers the currently implemented GloAro Mart and GloAro Digital Network flows, the Admin panel, WhatsApp channels, integrations and operational safeguards.</p>
+<div class="flow"><div class="box">Customer sends WhatsApp message</div><div class="arrow">→</div><div class="box">Provider webhook &amp; bot engine</div><div class="arrow">→</div><div class="box">Conversation and lead data</div><div class="arrow">→</div><div class="box">Admin follow-up</div></div>
+
+<h2>Document map</h2>
+<table class="toc"><tr><td>1</td><td><a href="#admin">Admin operating flow</a></td><td>Login, leads, conversations, settings and bot editing</td></tr><tr><td>2</td><td><a href="#bot">Customer bot flow</a></td><td>All menus, questions and outcomes</td></tr><tr><td>3</td><td><a href="#data">Lead and integration flow</a></td><td>Storage, Sheets, notifications and reliability</td></tr><tr><td>4</td><td><a href="#ops">Operating procedures</a></td><td>Testing, handover and go-live checklist</td></tr></table>
+
+<h1 id="admin" class="page">1. Admin operating flow</h1>
+<p>All admin pages require authenticated access. The navigation contains Dashboard, Leads, Customers, Conversations, Bot Menu, Simulator, WhatsApp and Settings.</p>
+<div class="flow"><div class="box">Sign in</div><div class="arrow">→</div><div class="box">Review Dashboard</div><div class="arrow">→</div><div class="box">Work leads or conversations</div><div class="arrow">→</div><div class="box">Maintain bot and channels</div></div>
+
+<h2>1.1 Dashboard — daily control centre</h2>
+<p>The Dashboard automatically refreshes and shows Total, New, Follow-up, Closed and Today’s Leads; Customers; Active Conversations; a 14-day lead trend; and recent leads. It also raises attention banners when Google Sheet syncs are pending or admin notifications have failed.</p>
+<div class="note"><strong>Daily action:</strong> Check the warning banner first. Then open new leads, assign ownership where applicable, and review active conversations requiring a human response.</div>
+
+<h2>1.2 Lead-management flow</h2>
+<div class="flow"><div class="box">Open Leads</div><div class="arrow">→</div><div class="box">Search / filter by status, category or date</div><div class="arrow">→</div><div class="box">Open lead detail</div><div class="arrow">→</div><div class="box">Assign, note, update status</div></div>
+<table><tr><th>Screen/action</th><th>What the administrator can do</th></tr><tr><td>Leads list</td><td>Search by name, phone, business, requirement or reference; filter by status, main category and dates; view Sheets and notification state.</td></tr><tr><td>Lead detail</td><td>Review captured answers and customer data, the bot’s complete raw answers, notes and sync status.</td></tr><tr><td>Status</td><td>Move a lead through <strong>New</strong>, <strong>Follow-up</strong> and <strong>Closed</strong>.</td></tr><tr><td>Assignment</td><td>Assign or remove a team-member owner.</td></tr><tr><td>Notes</td><td>Add dated internal notes for follow-up context.</td></tr><tr><td>Retry sync</td><td>Re-queue both the Google Sheets append and admin WhatsApp notification when either has failed or needs retrying.</td></tr></table>
+
+<h2>1.3 Customers and conversation history</h2>
+<p>Customers are identified by WhatsApp number within the workspace. The Customers list supports search; each profile shows captured customer data, full conversation history and linked leads. This gives the team context before contacting a person again.</p>
+
+<h2>1.4 Conversation handover and agent reply</h2>
+<div class="flow"><div class="box">Customer message arrives</div><div class="arrow">→</div><div class="box">Bot handles it by default</div><div class="arrow">→</div><div class="box">Admin selects Take over</div><div class="arrow">→</div><div class="box">Agent replies manually</div></div>
+<table><tr><th>Action</th><th>Effect</th></tr><tr><td>Take over</td><td>Assigns the conversation to the current agent and silences bot replies for that conversation.</td></tr><tr><td>Reply</td><td>Sends a manual WhatsApp response as the agent and records it in the thread.</td></tr><tr><td>Hand back to bot / Release</td><td>Re-enables automated bot handling for future customer messages.</td></tr><tr><td>Close</td><td>Marks the conversation closed; a later customer message can begin or reactivate a suitable conversation.</td></tr></table>
+<div class="note"><strong>Important:</strong> Take over before sending a manual reply for a complex enquiry. Release only after the customer is ready to continue with an automated menu.</div>
+
+<h2>1.5 Bot Menu — no-code content management</h2>
+<p>The Bot Menu page lists the active flow nodes. An administrator can edit message body, image URL, link URL, a menu’s button label, and its options. Changes apply on the customer’s next message without redeployment. New MENU or MESSAGE nodes can be created, then linked by setting an existing menu option’s target key. A node cannot be deleted while another node points to it; the Welcome node cannot be deleted.</p>
+<table><tr><th>Node type</th><th>Runtime behaviour</th></tr><tr><td>MENU</td><td>Displays tappable WhatsApp list options where supported; otherwise displays numbered text and waits for a valid selection.</td></tr><tr><td>QUESTION</td><td>Prompts for one answer, validates it and stores it in the active session.</td></tr><tr><td>MESSAGE</td><td>Sends information and immediately continues to its configured next node.</td></tr><tr><td>ACTION</td><td>Completes an operation such as <span class="code">CREATE_LEAD</span>, <span class="code">TRACK_ORDER</span> or <span class="code">END</span>.</td></tr></table>
+
+<h2>1.6 Simulator</h2>
+<p>The Simulator sends test messages through the same bot engine used by WhatsApp. It is the recommended way to validate new copy, menus, validation and lead creation before activating a live channel. Completed simulated flows create real database leads, so use a clearly recognisable test number and clean up or mark test data appropriately.</p>
+
+<h2>1.7 WhatsApp channel administration</h2>
+<p>Administrators can add one or more WhatsApp provider accounts. Supported adapters include Meta Cloud API, 360dialog, Gupshup, AiSensy and UltraMsg. Each account stores a label, number and provider-specific credentials; secrets are encrypted server-side and masked in the interface.</p>
+<ul><li><strong>Test connection</strong> verifies the credentials with the selected provider.</li><li><strong>Connect / Disconnect</strong> enables or disables bot delivery for that channel.</li><li><strong>Default</strong> chooses the account used for outgoing messages.</li><li><strong>Webhook</strong> displays the provider-specific URL and supports secret rotation.</li></ul>
+<div class="note">Until a WhatsApp channel is connected, the bot runs in dry-run mode. Responses are logged for the Simulator / outbox rather than delivered to a customer.</div>
+
+<h2>1.8 Settings</h2>
+<p>Settings maintain company details, support phone/email/website placeholders, bot session timeout, admin notification recipient(s), and Google Sheets configuration. The Sheet connection can be tested before operational use. Settings are tenant-scoped, so each workspace has independent copy and integrations.</p>
+
+<h1 id="bot" class="page">2. Customer bot flow</h1>
+<p>Every new or expired session begins at the Welcome menu. The bot uses interactive lists when the channel supports them; otherwise it accepts numbered replies. A customer may type <strong>0</strong> anywhere to return to the main menu and may use <strong>back</strong> at a sub-menu to return one level.</p>
+<div class="flow"><div class="box">Welcome</div><div class="arrow">→</div><div class="box">GloAro Mart</div><div class="arrow">or</div><div class="box">Digital Network</div><div class="arrow">→</div><div class="box">Information or lead capture</div></div>
+
+<h2>2.1 Universal journey rules</h2>
+<table><tr><th>Situation</th><th>Bot behaviour</th></tr><tr><td>First message / restart</td><td>Shows the Welcome menu: 1. GloAro Mart; 2. GloAro Digital Network.</td></tr><tr><td>Menu selection</td><td>Accepts number, emoji-number form, full label, and deliberate partial label matches.</td></tr><tr><td>Invalid reply</td><td>Shows a clear invalid-response prompt and re-sends the current menu or question.</td></tr><tr><td>Three consecutive invalid replies</td><td>Resets the session and re-sends the Welcome menu.</td></tr><tr><td>Inactivity</td><td>After the configured session timeout (default 30 minutes), restarts at Welcome rather than resuming a forgotten form.</td></tr><tr><td>Lead completion</td><td>Creates a lead, sends a confirmation with a reference number, and resets the session to Welcome.</td></tr></table>
+
+<h2>2.2 GloAro Mart</h2>
+<p><strong>Mart menu:</strong> B2B Marketplace, B2C Marketplace, Become a Seller, Track My Order, Contact Sales Team.</p>
+<div class="branch"><h3>B2B Marketplace</h3><p><strong>Choose category</strong> — Food &amp; FMCG, Electronics, Fashion &amp; Garments, Industrial Products or Other Products — then provide <strong>Company Name → Contact Person → Mobile Number → Product Requirement</strong>. The bot creates a <strong>GLOARO_MART / B2B_MARKETPLACE</strong> lead.</p></div>
+<div class="branch"><h3>B2C Marketplace</h3><p><strong>Browse Products</strong> shares the configured website and returns to the B2C menu. <strong>Latest Offers</strong> shares the configured website and returns to the B2C menu. <strong>Customer Support</strong> captures <strong>Name → Mobile Number → Issue/requirement</strong> and creates <strong>GLOARO_MART / CUSTOMER_SUPPORT</strong>.</p></div>
+<div class="branch"><h3>Become a Seller</h3><p>Captures <strong>Business Name → Owner Name → Mobile Number → Product Category → Business Location (City)</strong>. Product categories mirror the B2B categories. Creates <strong>GLOARO_MART / BECOME_SELLER</strong>.</p></div>
+<div class="branch"><h3>Track My Order</h3><p>Captures <strong>Order ID</strong> and calls the configured order lookup. If the lookup returns a match, the bot displays the live status and returns to Welcome. If no lookup is available or no order is found, it creates a support lead tagged <strong>GLOARO_MART / TRACK_ORDER</strong> and tells the customer the team will update them.</p></div>
+<div class="branch"><h3>Contact Sales Team</h3><p>Captures <strong>Name → Mobile Number → Requirement</strong> and creates <strong>GLOARO_MART / CONTACT_SALES</strong>.</p></div>
+
+<h2>2.3 GloAro Digital Network</h2>
+<p><strong>Digital Network menu:</strong> About GloAro, Membership Benefits, Chapters, Franchise Opportunity, Join GloAro, Upcoming Events and Contact Team.</p>
+<table><tr><th>Customer selection</th><th>Experience and recorded outcome</th></tr><tr><td>About GloAro</td><td>Shares the community value proposition: referrals, connections, expert learning, collaboration and business growth; then returns to the Digital Network menu.</td></tr><tr><td>Membership Benefits</td><td>Shows membership benefits, then captures <strong>Name → Mobile → Email → Business Name → Business Category → City</strong>. Creates <strong>DIGITAL_NETWORK / MEMBERSHIP</strong>.</td></tr><tr><td>Chapters</td><td>Captures <strong>City or PIN code</strong> (stored as city) and creates <strong>DIGITAL_NETWORK / CHAPTERS</strong> so the team can share nearest chapter details.</td></tr><tr><td>Franchise Opportunity</td><td>Shows the franchise proposition and captures <strong>Name → Mobile → City</strong>. Creates <strong>DIGITAL_NETWORK / FRANCHISE</strong>.</td></tr><tr><td>Join GloAro</td><td>Captures <strong>Name → Mobile → Email → Business Name → Business Category → City</strong>. Creates <strong>DIGITAL_NETWORK / JOIN_GLOARO</strong>.</td></tr><tr><td>Upcoming Events</td><td>Describes meetups, speaker sessions, referral meetings and workshops. Registration captures <strong>Name → Mobile → Email → City</strong>, creating <strong>DIGITAL_NETWORK / EVENT_REGISTRATION</strong>.</td></tr><tr><td>Contact Team</td><td>Shows configured phone, email and website, then captures <strong>Requirement</strong>. Creates <strong>DIGITAL_NETWORK / CONTACT_TEAM</strong>.</td></tr></table>
+
+<h2>2.4 Input validation</h2>
+<p>Questions specify the expected type: name, text, email, phone, city, PIN code, order ID or long-form requirement. The bot holds the customer on the current question until a valid answer is received; valid answers are retained in the session and later copied into the lead’s structured fields and raw-answer record.</p>
+
+<h1 id="data" class="page">3. Lead, data and integration flow</h1>
+<div class="flow"><div class="box">Validated answers</div><div class="arrow">→</div><div class="box">Lead saved in PostgreSQL</div><div class="arrow">→</div><div class="box">Queues: Sheet + admin alert</div><div class="arrow">→</div><div class="box">Team follows up in Admin</div></div>
+<h2>3.1 What is saved</h2>
+<table><tr><th>Record</th><th>Purpose</th></tr><tr><td>Customer</td><td>One tenant-scoped profile per WhatsApp number, with name/profile name and last interaction.</td></tr><tr><td>Conversation &amp; messages</td><td>Thread, status, takeover state, assigned agent, timestamps, direction, provider status and bot node context.</td></tr><tr><td>Lead</td><td>Reference, WhatsApp number, name, email, business name, main/sub-category, product/business category, city, requirement, status, assignee and all raw answers.</td></tr><tr><td>Bot session</td><td>Current node, answers gathered, navigation history, invalid-reply count and expiry.</td></tr><tr><td>Bot flow</td><td>Tenant-specific editable definitions of menus, questions, messages and actions.</td></tr></table>
+<p>Lead references are generated in the form <span class="code">GL-YYYY-NNNNNN</span>. A completed branch defaults to <strong>New</strong> and is visible to the Dashboard and Leads list immediately.</p>
+
+<h2>3.2 Side effects after lead creation</h2>
+<ol><li>The lead is first saved to PostgreSQL; this is the system of record.</li><li>A BullMQ job appends the lead to the configured Google Sheet.</li><li>A separate BullMQ job sends the new-lead WhatsApp notification to the configured admin recipient(s).</li><li>The bot sends the customer a confirmation and reference number.</li></ol>
+<p>The Sheet and notification jobs are asynchronous, so their availability never prevents a completed customer enquiry from being saved. Their status is shown on the lead and Dashboard.</p>
+
+<h2>3.3 Reliability and security controls</h2>
+<table><tr><th>Control</th><th>How it protects operations</th></tr><tr><td>Webhook idempotency</td><td>Each provider message ID is claimed before processing. A redelivered webhook is ignored rather than causing duplicate replies or duplicate leads.</td></tr><tr><td>Webhook signatures</td><td>Meta webhook signatures are checked against the preserved raw request body.</td></tr><tr><td>Queued retries</td><td>Sheet and notification jobs retry with exponential backoff.</td></tr><tr><td>Reconciliation</td><td>A periodic job re-queues leads whose Sheet sync never completed, including when Redis was unavailable at initial creation.</td></tr><tr><td>Tenant isolation</td><td>Customers, flows, settings, messages and leads are scoped to their tenant/workspace.</td></tr><tr><td>Credentials</td><td>Provider credentials are encrypted on the server and masked in API responses and the Admin UI.</td></tr></table>
+
+<h1 id="ops" class="page">4. Operating procedures</h1>
+<h2>4.1 Recommended daily routine</h2>
+<ol><li>Open Dashboard and resolve any integration warning.</li><li>Filter Leads by <strong>New</strong>; assign an owner and add a first-follow-up note.</li><li>Check Active Conversations and take over any enquiry requiring a human answer.</li><li>Move contacted leads to <strong>Follow-up</strong>; mark outcomes <strong>Closed</strong>.</li><li>For failed delivery or Sheet entries, open the lead, validate settings, then use <strong>Retry sync</strong>.</li></ol>
+
+<h2>4.2 Safely changing customer-facing content</h2>
+<ol><li>Use the Simulator to walk the affected branch from Welcome through completion.</li><li>In Bot Menu, change message copy, menu label or options.</li><li>For a new branch, create a node with an uppercase snake-case key, then set an existing option’s target to that key.</li><li>Run the Simulator again; verify navigation, invalid-input handling and final lead category.</li><li>Keep the Welcome node and referenced target nodes intact; deletion is intentionally blocked while references remain.</li></ol>
+
+<h2>4.3 Live-channel and go-live checklist</h2>
+<table><tr><th>Area</th><th>Confirm before go-live</th></tr><tr><td>Company details</td><td>Support phone, email and website are set; placeholder text renders correctly.</td></tr><tr><td>WhatsApp provider</td><td>Account created, credentials saved, connection test passes, webhook URL is installed at provider, channel connected and default selected.</td></tr><tr><td>Google Sheets</td><td>Credentials and Sheet ID configured; test connection passes; target columns are ready.</td></tr><tr><td>Notifications</td><td>Admin recipient numbers configured and a test lead results in an alert.</td></tr><tr><td>Bot content</td><td>Every menu and completion message is approved; links and contact data are correct.</td></tr><tr><td>End-to-end test</td><td>Test both top-level paths, an invalid reply, <strong>0</strong>, <strong>back</strong>, one lead branch, order tracking fallback, Sheet row and alert delivery.</td></tr></table>
+
+<h2>4.4 Quick troubleshooting</h2>
+<table><tr><th>Symptom</th><th>First checks</th></tr><tr><td>Bot does not reply live</td><td>WhatsApp channel is connected and active; correct webhook URL/secret is configured; provider connection test passes; conversation is not taken over.</td></tr><tr><td>Customer is stuck</td><td>Ask them to reply <strong>0</strong> for Welcome. Review the session node and Bot Menu target links; test the branch in Simulator.</td></tr><tr><td>Duplicate webhook delivery</td><td>Expected redeliveries should be ignored by idempotency. Review webhook event logs only if no response was produced.</td></tr><tr><td>Lead missing from Sheet / no alert</td><td>The lead remains safely saved in the app. Inspect its sync badges/error, confirm settings, then click Retry sync.</td></tr><tr><td>Bot replies during agent work</td><td>Use Take over first. Confirm the conversation is marked handed over before manual work continues.</td></tr></table>
+
+<div class="success"><strong>Handover summary:</strong> The bot qualifies and records enquiries continuously; the Admin panel is the team’s operational workspace for prioritising, assigning, communicating and closing them. The database remains the authoritative lead record; Google Sheets and WhatsApp alerts are supported, retried operational copies.</div>
+<p class="small">Source basis: current project implementation in the frontend routes, Admin pages, bot-flow definition, bot engine, integration services and database schema. Customer-facing copy and available nodes may be edited later in the Admin panel.</p>
+</body></html>

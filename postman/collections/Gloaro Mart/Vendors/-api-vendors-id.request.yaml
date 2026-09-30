@@ -1,0 +1,11 @@
+$kind: http-request
+name: /api/vendors/:id
+url: "{{baseUrl}}/api/vendors/id"
+method: GET
+pathVariables:
+  id: <value>
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 12000

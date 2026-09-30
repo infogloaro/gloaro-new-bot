@@ -1,0 +1,17 @@
+$kind: http-request
+name: POST /api/admin/products/1/media
+url: "{{baseUrl}}/api/admin/products/1/media"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "url": "https://example.com/dal.jpg",
+      "mediaType": "image",
+      "altText": "Toor dal",
+      "isPrimary": true,
+      "sortOrder": 0
+    }
+order: 3000

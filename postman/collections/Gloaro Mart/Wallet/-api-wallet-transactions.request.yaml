@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/wallet/transactions
+url: "{{baseUrl}}/api/wallet/transactions"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 2000

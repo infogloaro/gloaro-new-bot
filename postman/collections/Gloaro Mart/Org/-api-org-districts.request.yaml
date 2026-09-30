@@ -1,0 +1,15 @@
+$kind: http-request
+name: /api/org/districts
+url: "{{baseUrl}}/api/org/districts"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 4000

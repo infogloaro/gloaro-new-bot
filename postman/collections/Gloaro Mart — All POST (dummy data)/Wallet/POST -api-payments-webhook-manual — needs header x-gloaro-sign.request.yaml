@@ -1,0 +1,30 @@
+$kind: http-request
+name: POST /api/payments/webhook/manual — needs header x-gloaro-signature = HMAC-SHA256(rawBody, PAYME
+description: |-
+  Auth: gateway
+
+  needs header x-gloaro-signature = HMAC-SHA256(rawBody, PAYMENTS_WEBHOOK_SECRET)
+url: "{{baseUrl}}/api/payments/webhook/manual"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "eventId": "evt_1001",
+      "event": "captured",
+      "providerPaymentId": "manual_topup_1",
+      "amountCents": 50000
+    }
+auth:
+  type: noauth
+scripts:
+  - type: beforeRequest
+    code: |-
+      // Signs the exact body. Set collection variable webhookSecret = server PAYMENTS_WEBHOOK_SECRET.
+      const b = JSON.parse(pm.request.body.raw); b.eventId = 'evt_' + Date.now();
+      const raw = JSON.stringify(b); pm.request.body.raw = raw;
+      pm.request.headers.upsert({ key: 'x-gloaro-signature', value: CryptoJS.HmacSHA256(raw, pm.collectionVariables.get('webhookSecret')).toString() });
+    language: text/javascript
+order: 2000

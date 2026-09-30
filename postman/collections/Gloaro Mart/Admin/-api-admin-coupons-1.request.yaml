@@ -1,0 +1,15 @@
+$kind: http-request
+name: /api/admin/coupons
+url: "{{baseUrl}}/api/admin/coupons"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 87000

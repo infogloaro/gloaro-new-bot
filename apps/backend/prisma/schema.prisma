@@ -10,7 +10,8 @@
 // the same customer number and may use the same bot node keys and setting keys.
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native"]
 }
 
 datasource db {

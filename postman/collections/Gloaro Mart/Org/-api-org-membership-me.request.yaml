@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/org/membership/me
+url: "{{baseUrl}}/api/org/membership/me"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 9000

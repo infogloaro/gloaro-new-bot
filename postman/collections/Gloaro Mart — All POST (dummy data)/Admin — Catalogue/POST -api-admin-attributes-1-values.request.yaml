@@ -1,0 +1,14 @@
+$kind: http-request
+name: POST /api/admin/attributes/1/values
+url: "{{baseUrl}}/api/admin/attributes/1/values"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "value": "5 kg",
+      "sortOrder": 0
+    }
+order: 5000

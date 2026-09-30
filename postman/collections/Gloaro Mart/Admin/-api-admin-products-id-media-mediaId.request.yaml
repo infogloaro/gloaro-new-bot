@@ -1,0 +1,12 @@
+$kind: http-request
+name: /api/admin/products/:id/media/:mediaId
+url: "{{baseUrl}}/api/admin/products/id/media/mediaId"
+method: DELETE
+pathVariables:
+  id: <value>
+  mediaId: <value>
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 61000

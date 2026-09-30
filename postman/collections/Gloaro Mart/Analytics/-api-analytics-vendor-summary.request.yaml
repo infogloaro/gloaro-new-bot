@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/analytics/vendor/summary
+url: "{{baseUrl}}/api/analytics/vendor/summary"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 1000

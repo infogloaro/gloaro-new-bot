@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/cart/items/:productId
+url: "{{baseUrl}}/api/cart/items/productId"
+method: PATCH
+pathVariables:
+  productId: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 3000

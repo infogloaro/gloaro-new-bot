@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/orders/:id/returns
+url: "{{baseUrl}}/api/orders/id/returns"
+method: POST
+pathVariables:
+  id: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 9000

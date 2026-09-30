@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/admin/attributes/:id/values
+url: "{{baseUrl}}/api/admin/attributes/id/values"
+method: POST
+pathVariables:
+  id: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 69000

@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/admin/payments
+url: "{{baseUrl}}/api/admin/payments"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 91000

@@ -1,0 +1,15 @@
+$kind: http-request
+name: /api/admin/catalogue/import
+url: "{{baseUrl}}/api/admin/catalogue/import"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 33000

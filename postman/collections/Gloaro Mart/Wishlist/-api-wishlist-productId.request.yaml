@@ -1,0 +1,11 @@
+$kind: http-request
+name: /api/wishlist/:productId
+url: "{{baseUrl}}/api/wishlist/productId"
+method: DELETE
+pathVariables:
+  productId: <value>
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 4000

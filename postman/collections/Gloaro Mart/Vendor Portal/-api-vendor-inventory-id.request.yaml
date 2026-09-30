@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/vendor/inventory/:id
+url: "{{baseUrl}}/api/vendor/inventory/id"
+method: PATCH
+pathVariables:
+  id: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 13000

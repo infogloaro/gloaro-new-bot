@@ -1,0 +1,22 @@
+$kind: http-request
+name: "POST /api/orders/checkout — paymentMethod: cod | upi | card | netbanking (wallet not usa"
+description: |-
+  Auth: customer
+
+  paymentMethod: cod | upi | card | netbanking (wallet not usable yet)
+url: "{{baseUrl}}/api/orders/checkout"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "addressId": 1,
+      "deliveryMethod": "delivery",
+      "paymentMethod": "cod",
+      "couponsByVendor": {
+        "1": "WELCOME10"
+      }
+    }
+order: 2000

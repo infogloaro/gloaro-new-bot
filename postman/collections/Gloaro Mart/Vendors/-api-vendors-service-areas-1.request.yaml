@@ -1,0 +1,15 @@
+$kind: http-request
+name: /api/vendors/service-areas
+url: "{{baseUrl}}/api/vendors/service-areas"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 7000

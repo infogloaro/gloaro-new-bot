@@ -1,0 +1,24 @@
+$kind: http-request
+name: POST /api/admin/roles — permission keys from GET /api/admin/permissions
+description: |-
+  Auth: admin
+
+  permission keys from GET /api/admin/permissions
+url: "{{baseUrl}}/api/admin/roles"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "Catalogue Manager",
+      "description": "Manages products and categories",
+      "permissions": [
+        "products",
+        "categories",
+        "brands",
+        "inventory"
+      ]
+    }
+order: 4000

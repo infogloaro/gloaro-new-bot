@@ -1,0 +1,13 @@
+$kind: http-request
+name: POST /api/admin/returns/1/approve
+url: "{{baseUrl}}/api/admin/returns/1/approve"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "note": "Return approved, raise refund"
+    }
+order: 4000

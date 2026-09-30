@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/admin/products/:id/media
+url: "{{baseUrl}}/api/admin/products/id/media"
+method: POST
+pathVariables:
+  id: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 60000

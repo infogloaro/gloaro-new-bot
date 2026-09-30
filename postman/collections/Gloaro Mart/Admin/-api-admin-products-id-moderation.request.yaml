@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/admin/products/:id/moderation
+url: "{{baseUrl}}/api/admin/products/id/moderation"
+method: PATCH
+pathVariables:
+  id: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 36000

@@ -1,0 +1,20 @@
+$kind: http-request
+name: POST /api/admin/products/1/variants
+url: "{{baseUrl}}/api/admin/products/1/variants"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "sku": "DAL-1KG",
+      "priceCents": 15000,
+      "mrpCents": 16000,
+      "attributeValueIds": [
+        1
+      ],
+      "availableQty": 100,
+      "lowStockThreshold": 10
+    }
+order: 2000

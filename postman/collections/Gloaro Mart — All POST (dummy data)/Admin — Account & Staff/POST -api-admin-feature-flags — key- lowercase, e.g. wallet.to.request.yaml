@@ -1,0 +1,19 @@
+$kind: http-request
+name: "POST /api/admin/feature-flags — key: lowercase, e.g. wallet.topup"
+description: |-
+  Auth: admin
+
+  key: lowercase, e.g. wallet.topup
+url: "{{baseUrl}}/api/admin/feature-flags"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "key": "wallet.topup",
+      "description": "Enable wallet top-up",
+      "enabled": true
+    }
+order: 5000

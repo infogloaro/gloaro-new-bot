@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/admin/categories/:id
+url: "{{baseUrl}}/api/admin/categories/id"
+method: PATCH
+pathVariables:
+  id: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 78000

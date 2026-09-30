@@ -1,0 +1,15 @@
+$kind: http-request
+name: /api/matching/vendors
+url: "{{baseUrl}}/api/matching/vendors"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 1000

@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/admin/commission-plans
+url: "{{baseUrl}}/api/admin/commission-plans"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 41000

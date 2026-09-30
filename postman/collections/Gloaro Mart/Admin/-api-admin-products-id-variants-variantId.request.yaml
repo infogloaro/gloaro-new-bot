@@ -1,0 +1,18 @@
+$kind: http-request
+name: /api/admin/products/:id/variants/:variantId
+url: "{{baseUrl}}/api/admin/products/id/variants/variantId"
+method: PATCH
+pathVariables:
+  id: <value>
+  variantId: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 57000

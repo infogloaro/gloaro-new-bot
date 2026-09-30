@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/payments/group/:groupId/attempts
+url: "{{baseUrl}}/api/payments/group/groupId/attempts"
+method: POST
+pathVariables:
+  groupId: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 3000

@@ -1,0 +1,13 @@
+$kind: http-request
+name: POST /api/org/states
+url: "{{baseUrl}}/api/org/states"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "Karnataka"
+    }
+order: 1000

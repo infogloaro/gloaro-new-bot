@@ -1,0 +1,15 @@
+$kind: http-request
+name: /api/admin/org/chapters
+url: "{{baseUrl}}/api/admin/org/chapters"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 109000

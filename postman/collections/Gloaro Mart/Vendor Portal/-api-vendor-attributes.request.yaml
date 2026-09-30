@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/vendor/attributes
+url: "{{baseUrl}}/api/vendor/attributes"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 2000

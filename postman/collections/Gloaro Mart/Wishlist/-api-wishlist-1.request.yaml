@@ -1,0 +1,15 @@
+$kind: http-request
+name: /api/wishlist
+url: "{{baseUrl}}/api/wishlist"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 3000

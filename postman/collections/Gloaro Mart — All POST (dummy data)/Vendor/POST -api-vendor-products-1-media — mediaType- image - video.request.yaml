@@ -1,0 +1,21 @@
+$kind: http-request
+name: "POST /api/vendor/products/1/media — mediaType: image | video"
+description: |-
+  Auth: vendor
+
+  mediaType: image | video
+url: "{{baseUrl}}/api/vendor/products/1/media"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "url": "https://example.com/rice-front.jpg",
+      "mediaType": "image",
+      "altText": "Front of pack",
+      "isPrimary": true,
+      "sortOrder": 0
+    }
+order: 7000

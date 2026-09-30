@@ -1,0 +1,11 @@
+$kind: http-request
+name: /api/org/states/:stateId/districts
+url: "{{baseUrl}}/api/org/states/stateId/districts"
+method: GET
+pathVariables:
+  stateId: <value>
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 3000

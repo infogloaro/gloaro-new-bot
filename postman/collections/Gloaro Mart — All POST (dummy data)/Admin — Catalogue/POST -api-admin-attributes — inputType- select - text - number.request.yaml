@@ -1,0 +1,22 @@
+$kind: http-request
+name: "POST /api/admin/attributes — inputType: select | text | number"
+description: |-
+  Auth: admin
+
+  inputType: select | text | number
+url: "{{baseUrl}}/api/admin/attributes"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "Pack Size",
+      "code": "pack_size",
+      "categoryId": 1,
+      "inputType": "select",
+      "isVariantDefining": true,
+      "sortOrder": 0
+    }
+order: 4000

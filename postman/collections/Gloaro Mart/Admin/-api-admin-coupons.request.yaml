@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/admin/coupons
+url: "{{baseUrl}}/api/admin/coupons"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 86000

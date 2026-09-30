@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/products/ai-search
+url: "{{baseUrl}}/api/products/ai-search?includeTiers=<value>"
+method: POST
+queryParams:
+  includeTiers: <value>
+body:
+  type: json
+  content: |-
+    {
+        "query": "<query>"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 3000

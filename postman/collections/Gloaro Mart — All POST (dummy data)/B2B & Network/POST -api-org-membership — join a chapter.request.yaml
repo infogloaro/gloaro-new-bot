@@ -1,0 +1,17 @@
+$kind: http-request
+name: POST /api/org/membership — join a chapter
+description: |-
+  Auth: customer
+
+  join a chapter
+url: "{{baseUrl}}/api/org/membership"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "chapterId": 1
+    }
+order: 4000

@@ -1,0 +1,19 @@
+$kind: http-request
+name: POST /api/auth/otp/send — code is emailed (console if no RESEND_API_KEY)
+description: |-
+  Auth: no login
+
+  code is emailed (console if no RESEND_API_KEY)
+url: "{{baseUrl}}/api/auth/otp/send"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "email": "customer@example.com"
+    }
+auth:
+  type: noauth
+order: 4000

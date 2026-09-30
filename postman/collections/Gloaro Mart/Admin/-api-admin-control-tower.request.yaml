@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/admin/control-tower
+url: "{{baseUrl}}/api/admin/control-tower"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 30000

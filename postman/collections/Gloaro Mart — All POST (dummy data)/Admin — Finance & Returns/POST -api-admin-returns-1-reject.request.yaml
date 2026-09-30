@@ -1,0 +1,13 @@
+$kind: http-request
+name: POST /api/admin/returns/1/reject
+url: "{{baseUrl}}/api/admin/returns/1/reject"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "note": "Item was used"
+    }
+order: 5000

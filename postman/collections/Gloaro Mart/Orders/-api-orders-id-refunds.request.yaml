@@ -1,0 +1,11 @@
+$kind: http-request
+name: /api/orders/:id/refunds
+url: "{{baseUrl}}/api/orders/id/refunds"
+method: GET
+pathVariables:
+  id: <value>
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 8000

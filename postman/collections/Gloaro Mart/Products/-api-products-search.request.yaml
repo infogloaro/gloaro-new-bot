@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/products/search
+url: "{{baseUrl}}/api/products/search"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 4000

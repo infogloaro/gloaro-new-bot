@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/payments/webhook/:provider
+url: "{{baseUrl}}/api/payments/webhook/provider"
+method: POST
+pathVariables:
+  provider: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 1000

@@ -1,0 +1,11 @@
+$kind: http-request
+name: /api/org/districts/:districtId/chapters
+url: "{{baseUrl}}/api/org/districts/districtId/chapters"
+method: GET
+pathVariables:
+  districtId: <value>
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 5000

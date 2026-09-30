@@ -1,0 +1,15 @@
+$kind: http-request
+name: /api/admin/matching/weights
+url: "{{baseUrl}}/api/admin/matching/weights"
+method: PUT
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 46000

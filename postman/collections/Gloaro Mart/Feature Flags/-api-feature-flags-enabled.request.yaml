@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/feature-flags/enabled
+url: "{{baseUrl}}/api/feature-flags/enabled"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 1000

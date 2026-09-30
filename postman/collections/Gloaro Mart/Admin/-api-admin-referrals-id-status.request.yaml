@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/admin/referrals/:id/status
+url: "{{baseUrl}}/api/admin/referrals/id/status"
+method: PATCH
+pathVariables:
+  id: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 115000

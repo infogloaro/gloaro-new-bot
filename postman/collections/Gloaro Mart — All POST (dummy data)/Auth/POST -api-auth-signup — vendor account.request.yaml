@@ -1,0 +1,23 @@
+$kind: http-request
+name: POST /api/auth/signup — vendor account
+description: |-
+  Auth: no login
+
+  vendor account
+url: "{{baseUrl}}/api/auth/signup"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "fullName": "Test Vendor",
+      "email": "vendor@example.com",
+      "phoneNumber": "9876500000",
+      "password": "Password123",
+      "role": "vendor"
+    }
+auth:
+  type: noauth
+order: 2000

@@ -1,0 +1,12 @@
+$kind: http-request
+name: /api/orders/:id/returns/:returnId
+url: "{{baseUrl}}/api/orders/id/returns/returnId"
+method: DELETE
+pathVariables:
+  id: <value>
+  returnId: <value>
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 11000

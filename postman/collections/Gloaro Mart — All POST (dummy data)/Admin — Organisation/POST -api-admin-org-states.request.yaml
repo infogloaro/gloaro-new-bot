@@ -1,0 +1,13 @@
+$kind: http-request
+name: POST /api/admin/org/states
+url: "{{baseUrl}}/api/admin/org/states"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "Tamil Nadu"
+    }
+order: 1000

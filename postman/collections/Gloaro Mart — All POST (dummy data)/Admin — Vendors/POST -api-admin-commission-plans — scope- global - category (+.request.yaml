@@ -1,0 +1,20 @@
+$kind: http-request
+name: "POST /api/admin/commission-plans — scope: global | category (+categoryId) | vendor (+vendorId)"
+description: |-
+  Auth: admin
+
+  scope: global | category (+categoryId) | vendor (+vendorId)
+url: "{{baseUrl}}/api/admin/commission-plans"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "scope": "global",
+      "commissionPercent": 8,
+      "flatFeeCents": 0,
+      "notes": "Default platform commission"
+    }
+order: 3000

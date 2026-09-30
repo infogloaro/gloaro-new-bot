@@ -1,0 +1,13 @@
+$kind: http-request
+name: POST /api/payments/group/1/attempts
+url: "{{baseUrl}}/api/payments/group/1/attempts"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "method": "upi"
+    }
+order: 6000

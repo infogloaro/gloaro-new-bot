@@ -1,0 +1,24 @@
+$kind: http-request
+name: POST /api/auth/otp/verify — use the emailed code
+description: |-
+  Auth: no login
+
+  use the emailed code
+url: "{{baseUrl}}/api/auth/otp/verify"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "email": "customer@example.com",
+      "otp": "123456"
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: const j = pm.response.json(); if (j.token) pm.collectionVariables.set('token', j.token);
+    language: text/javascript
+order: 5000

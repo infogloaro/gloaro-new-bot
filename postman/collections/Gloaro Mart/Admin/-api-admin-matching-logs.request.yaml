@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/admin/matching/logs
+url: "{{baseUrl}}/api/admin/matching/logs"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 47000

@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/admin/settings
+url: "{{baseUrl}}/api/admin/settings"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 84000

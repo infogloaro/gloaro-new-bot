@@ -1,0 +1,19 @@
+$kind: http-request
+name: POST /api/serviceability/check
+url: "{{baseUrl}}/api/serviceability/check"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "addressId": 1,
+      "items": [
+        {
+          "productId": 1,
+          "quantity": 1
+        }
+      ]
+    }
+order: 2000

@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/cart
+url: "{{baseUrl}}/api/cart"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 1000

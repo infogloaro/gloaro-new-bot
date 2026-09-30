@@ -1,0 +1,11 @@
+$kind: http-request
+name: /api/admin/attributes/:id
+url: "{{baseUrl}}/api/admin/attributes/id"
+method: DELETE
+pathVariables:
+  id: <value>
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 72000

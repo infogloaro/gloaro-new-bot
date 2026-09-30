@@ -1,0 +1,21 @@
+$kind: http-request
+name: "POST /api/coupons — discountType: flat | percentage"
+description: |-
+  Auth: vendor
+
+  discountType: flat | percentage
+url: "{{baseUrl}}/api/coupons"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "code": "WELCOME10",
+      "discountType": "percentage",
+      "discountValue": 10,
+      "minOrderValueCents": 50000,
+      "expiresAt": "2027-12-31T23:59:59Z"
+    }
+order: 5000

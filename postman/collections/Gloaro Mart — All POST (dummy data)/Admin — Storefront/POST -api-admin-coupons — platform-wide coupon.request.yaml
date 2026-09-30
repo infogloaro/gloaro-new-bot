@@ -1,0 +1,21 @@
+$kind: http-request
+name: POST /api/admin/coupons — platform-wide coupon
+description: |-
+  Auth: admin
+
+  platform-wide coupon
+url: "{{baseUrl}}/api/admin/coupons"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "code": "PLATFORM50",
+      "discountType": "flat",
+      "discountValue": 5000,
+      "minOrderValueCents": 30000,
+      "expiresAt": "2027-12-31T23:59:59Z"
+    }
+order: 3000

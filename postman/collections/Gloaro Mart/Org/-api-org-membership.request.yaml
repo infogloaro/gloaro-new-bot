@@ -1,0 +1,15 @@
+$kind: http-request
+name: /api/org/membership
+url: "{{baseUrl}}/api/org/membership"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 10000

@@ -1,0 +1,11 @@
+$kind: http-request
+name: /api/orders/groups/:id/reassignments
+url: "{{baseUrl}}/api/orders/groups/id/reassignments"
+method: GET
+pathVariables:
+  id: <value>
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 5000

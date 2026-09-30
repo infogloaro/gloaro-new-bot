@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/brands
+url: "{{baseUrl}}/api/brands"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 1000

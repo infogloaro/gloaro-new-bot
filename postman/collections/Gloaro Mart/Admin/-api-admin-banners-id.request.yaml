@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/admin/banners/:id
+url: "{{baseUrl}}/api/admin/banners/id"
+method: PATCH
+pathVariables:
+  id: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 120000

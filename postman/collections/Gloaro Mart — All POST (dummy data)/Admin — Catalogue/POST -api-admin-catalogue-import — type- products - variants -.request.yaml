@@ -1,0 +1,19 @@
+$kind: http-request
+name: "POST /api/admin/catalogue/import — type: products | variants | inventory; dryRun:true validates"
+description: |-
+  Auth: admin
+
+  type: products | variants | inventory; dryRun:true validates without saving
+url: "{{baseUrl}}/api/admin/catalogue/import"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "type": "products",
+      "dryRun": true,
+      "csv": "name,priceCents\nSample Product,10000\n"
+    }
+order: 8000

@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/admin/org/districts/:id
+url: "{{baseUrl}}/api/admin/org/districts/id"
+method: PATCH
+pathVariables:
+  id: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 106000

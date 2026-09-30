@@ -1,0 +1,12 @@
+workspace:
+  id: bb3c9693-13aa-42d2-8e0d-74b835070424
+
+# Each entry here maps a local resource to one or more corresponding objects in Postman Cloud
+
+cloudResources:
+  collections:
+    ../postman/collections/Gloaro_mart_api: 58490146-a4f466b7-583f-49e8-aac2-a3b0c24cf304
+    ../postman/collections/Gloaro Mart: bbbd6f76-b9dd-47c1-816f-cd3fc15d134c
+    ../postman/collections/Gloaro Mart — All POST (dummy data): ffd743b5-c6dc-4522-993f-d1f8ca148403
+  globals:
+    ../postman/globals/workspace.globals.yaml: 71d10b39-9651-4021-8083-74765667e129

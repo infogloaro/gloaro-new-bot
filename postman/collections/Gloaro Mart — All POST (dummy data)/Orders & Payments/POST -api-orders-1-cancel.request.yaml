@@ -1,0 +1,13 @@
+$kind: http-request
+name: POST /api/orders/1/cancel
+url: "{{baseUrl}}/api/orders/1/cancel"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "reason": "Changed my mind"
+    }
+order: 3000

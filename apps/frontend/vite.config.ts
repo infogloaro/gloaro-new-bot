@@ -13,7 +13,7 @@ export default defineConfig({
     // Calls go to /api/... in dev and are proxied, so no CORS and no
     // environment-specific base URL in the client code.
     proxy: {
-      '/api': { target: 'http://localhost:3000', changeOrigin: true },
+      '/api': { target: 'http://localhost:3010', changeOrigin: true },
     },
   },
   build: {

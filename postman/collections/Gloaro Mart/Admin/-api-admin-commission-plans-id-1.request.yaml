@@ -1,0 +1,11 @@
+$kind: http-request
+name: /api/admin/commission-plans/:id
+url: "{{baseUrl}}/api/admin/commission-plans/id"
+method: DELETE
+pathVariables:
+  id: <value>
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 44000

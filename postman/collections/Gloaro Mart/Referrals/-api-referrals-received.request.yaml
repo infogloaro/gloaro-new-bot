@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/referrals/received
+url: "{{baseUrl}}/api/referrals/received"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 4000

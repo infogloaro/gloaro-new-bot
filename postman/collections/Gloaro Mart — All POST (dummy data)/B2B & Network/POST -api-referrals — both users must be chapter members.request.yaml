@@ -1,0 +1,19 @@
+$kind: http-request
+name: POST /api/referrals — both users must be chapter members
+description: |-
+  Auth: customer
+
+  both users must be chapter members
+url: "{{baseUrl}}/api/referrals"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "receivingUserId": 2,
+      "note": "Needs 200kg rice weekly",
+      "estimatedValueCents": 2500000
+    }
+order: 5000

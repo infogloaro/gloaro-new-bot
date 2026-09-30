@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GloAro Bot — Client Onboarding Checklist</title>
+<style>
+  @page { size: A4; margin: 14mm 13mm 14mm 13mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 10.2pt; line-height: 1.45; color: #1b2430; margin: 0;
+  }
+  h1 { font-size: 20pt; margin: 0 0 2mm; color: #0d3b66; letter-spacing: -.3px; }
+  .sub { color: #5a6b7d; font-size: 9.4pt; margin: 0 0 5mm; }
+  h2 {
+    font-size: 12pt; margin: 7mm 0 2.5mm; color: #0d3b66;
+    border-bottom: 2px solid #0d3b66; padding-bottom: 1.4mm;
+    page-break-after: avoid;
+  }
+  h2 .n {
+    display: inline-block; background: #0d3b66; color: #fff;
+    width: 6.2mm; height: 6.2mm; line-height: 6.2mm; text-align: center;
+    border-radius: 50%; font-size: 9pt; margin-right: 2.2mm;
+  }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 2mm; page-break-inside: auto; }
+  th {
+    background: #eef3f8; color: #0d3b66; font-size: 8.6pt; text-align: left;
+    text-transform: uppercase; letter-spacing: .4px;
+    padding: 2mm 2.4mm; border: 1px solid #c9d6e3;
+  }
+  td { padding: 2mm 2.4mm; border: 1px solid #d8e2ec; vertical-align: top; }
+  tr { page-break-inside: avoid; }
+  td.f { width: 46%; }
+  td.k { width: 30%; font-family: "Consolas", monospace; font-size: 8.6pt; color: #4a5a6b; }
+  td.b { width: 24%; background: #fcfdfe; }
+
+  .req {
+    display: inline-block; background: #fff3cd; border-left: 3px solid #e0a800;
+    padding: 0 1.4mm; font-weight: 600;
+  }
+  .badge {
+    display: inline-block; font-size: 7.6pt; font-weight: 700; padding: .3mm 1.6mm;
+    border-radius: 2px; vertical-align: middle; margin-left: 1.5mm;
+  }
+  .must { background: #d64545; color: #fff; }
+  .opt  { background: #e4eaf0; color: #5a6b7d; }
+  .we   { background: #1b7a4b; color: #fff; }
+
+  .note {
+    background: #fff8e1; border-left: 4px solid #e0a800;
+    padding: 2.6mm 3mm; margin: 3mm 0; font-size: 9.4pt;
+  }
+  .warn {
+    background: #fdecec; border-left: 4px solid #d64545;
+    padding: 2.6mm 3mm; margin: 3mm 0; font-size: 9.4pt;
+  }
+  .note b, .warn b { color: #0d3b66; }
+  .legend { font-size: 8.6pt; color: #5a6b7d; margin: 0 0 4mm; }
+  .legend span { margin-right: 4mm; }
+  .two { display: flex; gap: 4mm; }
+  .two > div { flex: 1; }
+  .card { border: 1px solid #d8e2ec; border-radius: 3px; padding: 2.6mm 3mm; }
+  .card h3 { margin: 0 0 1.6mm; font-size: 10pt; color: #0d3b66; }
+  ul { margin: 1mm 0 0; padding-left: 4.5mm; }
+  li { margin-bottom: 1.1mm; }
+  .foot { margin-top: 7mm; border-top: 1px solid #d8e2ec; padding-top: 2.5mm;
+          font-size: 8.4pt; color: #7a8a9a; }
+  .sig { margin-top: 5mm; display: flex; gap: 8mm; font-size: 9pt; }
+  .sig > div { flex: 1; border-top: 1px solid #9aa9b8; padding-top: 1.5mm; color: #5a6b7d; }
+</style>
+</head>
+<body>
+
+<h1>GloAro Bot — Client Onboarding Checklist</h1>
+<p class="sub">Everything to collect from a client before we can build and launch their WhatsApp bot.</p>
+
+<p class="legend">
+  <span><span class="badge must">MUST</span> Blocker — cannot go live without it</span>
+  <span><span class="badge opt">OPTIONAL</span> Nice to have</span>
+  <span><span class="badge we">WE CREATE</span> Our side, don't ask the client</span>
+</p>
+
+<div class="warn">
+  <b>Ask this first:</b> Is the business WhatsApp number <b>already in use on the WhatsApp app?</b>
+  For the official Meta Cloud API the number must be <b>deleted from the app</b> first — one number
+  can live on only one platform. If the client refuses, we use the UltraMsg route instead (Section 2B).
+</div>
+
+<h2><span class="n">1</span>Company Details</h2>
+<table>
+  <tr><th>What to collect</th><th>Stored as</th><th>Client's answer</th></tr>
+  <tr><td class="f"><span class="req">Company name</span> <span class="badge must">MUST</span></td><td class="k">company.name</td><td class="b"></td></tr>
+  <tr><td class="f"><span class="req">Short description, 2–3 lines</span> <span class="badge must">MUST</span><br><span style="font-size:8.6pt;color:#5a6b7d">Used in the bot's welcome / about message</span></td><td class="k">company.description</td><td class="b"></td></tr>
+  <tr><td class="f"><span class="req">Official email</span> <span class="badge must">MUST</span></td><td class="k">company.email</td><td class="b"></td></tr>
+  <tr><td class="f">Website URL <span class="badge opt">OPTIONAL</span></td><td class="k">company.website</td><td class="b"></td></tr>
+  <tr><td class="f"><span class="req">Support phone (with country code)</span> <span class="badge must">MUST</span></td><td class="k">company.supportPhone</td><td class="b"></td></tr>
+  <tr><td class="f">Logo file or URL <span class="badge opt">OPTIONAL</span></td><td class="k">company.logoUrl</td><td class="b"></td></tr>
+  <tr><td class="f">Sales contact number <span class="badge opt">OPTIONAL</span></td><td class="k">contact.sales</td><td class="b"></td></tr>
+  <tr><td class="f">Membership contact number <span class="badge opt">OPTIONAL</span></td><td class="k">contact.membership</td><td class="b"></td></tr>
+  <tr><td class="f">Franchise contact number <span class="badge opt">OPTIONAL</span></td><td class="k">contact.franchise</td><td class="b"></td></tr>
+  <tr><td class="f">Tenant slug, e.g. <i>acme-foods</i> <span class="badge we">WE CREATE</span></td><td class="k">Tenant.slug</td><td class="b"></td></tr>
+</table>
+
+<h2><span class="n">2</span>WhatsApp Channel Credentials</h2>
+<p style="margin:0 0 2.5mm;font-size:9.4pt;color:#5a6b7d">Pick <b>one</b> route. 2A is the official one we use for the GloAro office bot.</p>
+
+<div class="two">
+  <div class="card">
+    <h3>2A · Meta WhatsApp Cloud API <span class="badge must">RECOMMENDED</span></h3>
+    <ul>
+      <li><span class="req">Business WhatsApp number</span> — must not be active on the WhatsApp app</li>
+      <li><span class="req">Phone Number ID</span></li>
+      <li><span class="req">Business Account ID (WABA)</span></li>
+      <li><span class="req">Access Token</span> — system user with <i>whatsapp_business_messaging</i> + <i>business_management</i></li>
+      <li>App Secret — verifies the webhook signature</li>
+      <li>Webhook Verify Token <span class="badge we">WE CREATE</span></li>
+      <li><span class="req">Admin / partner access to their Meta Business Manager</span></li>
+      <li>OTP access on the number for verification</li>
+    </ul>
+    <p style="margin:2mm 0 0;font-size:8.8pt;color:#5a6b7d">Gets: buttons, tappable list menus, templates, delivery status. Template approval needed for first contact; replies limited to a 24-hour window.</p>
+  </div>
+  <div class="card">
+    <h3>2B · UltraMsg (fallback)</h3>
+    <ul>
+      <li><span class="req">Instance ID</span></li>
+      <li><span class="req">Token</span></li>
+      <li>Phone in hand to scan the QR code</li>
+      <li>Callback secret <span class="badge we">WE CREATE</span></li>
+    </ul>
+    <p style="margin:2mm 0 0;font-size:8.8pt;color:#5a6b7d">No Meta account, no number deletion, no 24-hour limit. But <b>no buttons or list menus</b> (numbered menus only), and it is an unofficial gateway — bulk messaging risks a ban.</p>
+  </div>
+</div>
+
+<h2><span class="n">3</span>Bot Flow Content <span style="font-weight:400;font-size:9pt;color:#d64545">← clients underestimate this; get it in writing</span></h2>
+<table>
+  <tr><th>What to collect</th><th>Notes</th><th>Client's answer</th></tr>
+  <tr><td class="f"><span class="req">Welcome message text</span> <span class="badge must">MUST</span></td><td class="k" style="font-family:inherit;font-size:9pt">Optional image with it</td><td class="b"></td></tr>
+  <tr><td class="f"><span class="req">Main menu options</span> <span class="badge must">MUST</span></td><td class="k" style="font-family:inherit;font-size:9pt">Each row: label, emoji, and where it leads</td><td class="b"></td></tr>
+  <tr><td class="f"><span class="req">For each branch — what type?</span> <span class="badge must">MUST</span></td><td class="k" style="font-family:inherit;font-size:9pt">Info message / question / action (create lead, track order, end)</td><td class="b"></td></tr>
+  <tr><td class="f"><span class="req">Fields to collect per branch</span> <span class="badge must">MUST</span></td><td class="k" style="font-family:inherit;font-size:9pt">name, phone, email, city, pincode, order id, free text — and which are mandatory</td><td class="b"></td></tr>
+  <tr><td class="f"><span class="req">Closing message after a lead is submitted</span> <span class="badge must">MUST</span></td><td class="k" style="font-family:inherit;font-size:9pt">&nbsp;</td><td class="b"></td></tr>
+  <tr><td class="f">Language(s) <span class="badge opt">OPTIONAL</span></td><td class="k" style="font-family:inherit;font-size:9pt">English only, or Tamil / Hindi too</td><td class="b"></td></tr>
+  <tr><td class="f">Menu style <span class="badge opt">OPTIONAL</span></td><td class="k" style="font-family:inherit;font-size:9pt">Tappable list (default) or reply-with-a-number</td><td class="b"></td></tr>
+  <tr><td class="f">Session timeout <span class="badge opt">OPTIONAL</span></td><td class="k" style="font-family:inherit;font-size:9pt">Default 30 minutes</td><td class="b"></td></tr>
+</table>
+
+<h2><span class="n">4</span>Lead Handling &amp; Notifications</h2>
+<table>
+  <tr><th>What to collect</th><th>Stored as</th><th>Client's answer</th></tr>
+  <tr><td class="f"><span class="req">Admin WhatsApp numbers to alert on every new lead</span> <span class="badge must">MUST</span></td><td class="k">notification.adminNumbers</td><td class="b"></td></tr>
+  <tr><td class="f">Turn lead alerts on/off <span class="badge opt">OPTIONAL</span></td><td class="k">notification.enabled</td><td class="b"></td></tr>
+  <tr><td class="f">Lead categories &amp; lead-ID prefix <span class="badge opt">OPTIONAL</span></td><td class="k">LeadCounter</td><td class="b"></td></tr>
+  <tr><td class="f">Google Sheet ID + tab name, if they want lead sync <span class="badge opt">OPTIONAL</span></td><td class="k">sheets.sheetId / sheets.tab</td><td class="b"></td></tr>
+  <tr><td class="f">Order-tracking API URL, if they have one <span class="badge opt">OPTIONAL</span></td><td class="k">bot.orderApiUrl</td><td class="b"></td></tr>
+</table>
+<p style="font-size:8.8pt;color:#5a6b7d;margin:0">If no order API is given, the bot raises a support request instead of showing live status.</p>
+
+<h2><span class="n">5</span>Dashboard Users</h2>
+<table>
+  <tr><th>What to collect</th><th>Notes</th><th>Client's answer</th></tr>
+  <tr><td class="f"><span class="req">Name, email, phone, role for every person needing login</span> <span class="badge must">MUST</span></td><td class="k" style="font-family:inherit;font-size:9pt">Role = admin or staff. At least one admin.</td><td class="b"></td></tr>
+</table>
+
+<h2><span class="n">6</span>Commercial &amp; Operational</h2>
+<table>
+  <tr><th>What to collect</th><th>Notes</th><th>Client's answer</th></tr>
+  <tr><td class="f"><span class="req">Target go-live date</span> <span class="badge must">MUST</span></td><td class="k" style="font-family:inherit;font-size:9pt">&nbsp;</td><td class="b"></td></tr>
+  <tr><td class="f"><span class="req">Who signs off on the flow content</span> <span class="badge must">MUST</span></td><td class="k" style="font-family:inherit;font-size:9pt">One named person, to avoid endless revisions</td><td class="b"></td></tr>
+  <tr><td class="f">Expected monthly message volume <span class="badge opt">OPTIONAL</span></td><td class="k" style="font-family:inherit;font-size:9pt">Drives Meta conversation cost</td><td class="b"></td></tr>
+  <tr><td class="f">Support hours / escalation contact <span class="badge opt">OPTIONAL</span></td><td class="k" style="font-family:inherit;font-size:9pt">&nbsp;</td><td class="b"></td></tr>
+</table>
+
+<div class="note">
+  <b>Minimum to start building:</b> Sections 1 and 3 (company details + flow content). We can begin the
+  flow while the client's Meta verification is still in progress — but <b>nothing can go live</b> until
+  Section 2 credentials are in hand.
+</div>
+
+<div class="sig">
+  <div>Collected by (GloAro)&nbsp;/&nbsp;Date</div>
+  <div>Client sign-off&nbsp;/&nbsp;Date</div>
+</div>
+
+<p class="foot">GloAro · Client Onboarding Checklist · Internal use</p>
+
+</body>
+</html>

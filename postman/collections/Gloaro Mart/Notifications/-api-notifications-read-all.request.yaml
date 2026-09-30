@@ -1,0 +1,15 @@
+$kind: http-request
+name: /api/notifications/read-all
+url: "{{baseUrl}}/api/notifications/read-all"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 2000

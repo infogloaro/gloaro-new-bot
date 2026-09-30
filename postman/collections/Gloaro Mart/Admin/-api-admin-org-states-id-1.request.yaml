@@ -1,0 +1,11 @@
+$kind: http-request
+name: /api/admin/org/states/:id
+url: "{{baseUrl}}/api/admin/org/states/id"
+method: DELETE
+pathVariables:
+  id: <value>
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 103000

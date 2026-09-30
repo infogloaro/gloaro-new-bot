@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/admin/orders/:id/status
+url: "{{baseUrl}}/api/admin/orders/id/status"
+method: PATCH
+pathVariables:
+  id: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 50000

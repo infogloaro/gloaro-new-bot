@@ -1,0 +1,18 @@
+$kind: http-request
+name: "POST /api/notifications/device-token — platform: android | ios | web"
+description: |-
+  Auth: customer
+
+  platform: android | ios | web
+url: "{{baseUrl}}/api/notifications/device-token"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "token": "test-fcm-token-123",
+      "platform": "android"
+    }
+order: 1000

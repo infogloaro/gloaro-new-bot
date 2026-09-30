@@ -1,0 +1,27 @@
+$kind: http-request
+name: New Request
+url: http://localhost:4000/api/vendors/profile
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "businessName": "gmart",
+      "businessType": "both",
+      "gstNumber": "12227272772",
+      "addressLine": "12 Market Road",
+      "city": "delhi",
+      "state": "delhi",
+      "pincode": "5600031",
+      "latitude": 12.4,
+      "longitude": 77.3
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_0b61}}"
+scripts:
+  - type: afterResponse
+    code: pm.collectionVariables.set("customerToken", pm.response.json().token);
+    language: text/javascript
+order: 4369138870510727

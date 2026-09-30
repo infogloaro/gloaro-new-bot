@@ -1,0 +1,17 @@
+$kind: http-request
+name: /api/admin/vendor-documents/:docId/status
+url: "{{baseUrl}}/api/admin/vendor-documents/docId/status"
+method: PATCH
+pathVariables:
+  docId: <value>
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 39000

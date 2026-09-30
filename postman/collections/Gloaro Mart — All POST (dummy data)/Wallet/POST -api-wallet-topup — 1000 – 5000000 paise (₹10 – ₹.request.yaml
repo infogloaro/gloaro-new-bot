@@ -1,0 +1,17 @@
+$kind: http-request
+name: POST /api/wallet/topup — 1000 – 5000000 paise (₹10 – ₹50,000)
+description: |-
+  Auth: customer
+
+  1000 – 5000000 paise (₹10 – ₹50,000)
+url: "{{baseUrl}}/api/wallet/topup"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "amountCents": 50000
+    }
+order: 1000

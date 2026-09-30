@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/admin/attributes
+url: "{{baseUrl}}/api/admin/attributes"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 66000

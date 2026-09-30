@@ -1,0 +1,20 @@
+$kind: http-request
+name: POST /api/matching/vendors
+url: "{{baseUrl}}/api/matching/vendors"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "addressId": 1,
+      "items": [
+        {
+          "productId": 1,
+          "quantity": 1
+        }
+      ],
+      "strategy": "recommended"
+    }
+order: 3000

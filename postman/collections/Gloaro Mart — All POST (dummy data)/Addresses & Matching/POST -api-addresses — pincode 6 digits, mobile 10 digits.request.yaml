@@ -1,0 +1,30 @@
+$kind: http-request
+name: POST /api/addresses — pincode 6 digits, mobile 10 digits
+description: |-
+  Auth: customer
+
+  pincode 6 digits, mobile 10 digits
+url: "{{baseUrl}}/api/addresses"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "receiverName": "Test User",
+      "mobileNumber": "9876543210",
+      "houseBuilding": "12, Rose Villa",
+      "street": "MG Road",
+      "area": "Indiranagar",
+      "landmark": "Near Metro",
+      "city": "Bengaluru",
+      "district": "Bengaluru Urban",
+      "state": "Karnataka",
+      "pincode": "560038",
+      "latitude": 12.9784,
+      "longitude": 77.6408,
+      "addressType": "home",
+      "isDefault": true
+    }
+order: 1000

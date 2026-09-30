@@ -1,0 +1,9 @@
+$kind: http-request
+name: /api/orders/groups
+url: "{{baseUrl}}/api/orders/groups"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 3000

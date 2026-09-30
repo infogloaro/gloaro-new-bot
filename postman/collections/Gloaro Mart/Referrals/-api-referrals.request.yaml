@@ -1,0 +1,15 @@
+$kind: http-request
+name: /api/referrals
+url: "{{baseUrl}}/api/referrals"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 1000
